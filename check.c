@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.c                                           :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/26 16:02:59 by kmills           ###   ########.fr       */
+/*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
+/*   Updated: 2019/02/26 16:02:02 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-int		main(int argc, char **argv)
+int     kolvozv(char *file)
 {
-    int     o;
-    int     r;
-    char    *buf;
 
-
-    if (argc > 1)
-    o = open(argv[1], O_RDONLY);
-    while ((r = read()))
-    return (0);
 }
