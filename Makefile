@@ -1,6 +1,7 @@
 NAME = fillit
 MAKE = make
 override G += 
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 

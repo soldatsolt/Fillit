@@ -6,14 +6,19 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/25 21:57:41 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/25 23:14:30 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	printf("%s\n", "abcd");
-	return (0);
+    int     o;
+    int     r;
+
+    if (argc > 1)
+    o = open(argv[1], O_RDONLY);
+
+    return (0);
 }
