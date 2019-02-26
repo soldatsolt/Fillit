@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/26 17:45:32 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/26 17:54:54 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int		kolvoresh(char *file, int o)
 	i = 0;
 	while (get_next_line(o, &str))
 	{
-		if (!(ft_strlen(str) == 4 || (n == 4 && ft_strlen(str) == 0)))
-			return (0);
 		n = n + kolvoreshvstroke(str);
+		if (!((ft_strlen(str) == 4 && n < 5) || (n == 4 && ft_strlen(str) == 0)))
+			return (0);
 		if (ft_strlen(str) == 0)
 			n = 0;
 	}
