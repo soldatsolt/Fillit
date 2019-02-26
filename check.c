@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/26 17:54:54 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/26 19:07:49 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		kolvoreshvstroke(char *s)
 {
 	int		i;
-	int 	n;
+	int		n;
 
 	i = 0;
 	n = 0;
@@ -35,15 +35,26 @@ int		kolvoresh(char *file, int o)
 	int		i;
 	char	*str;
 	int		n;
+	char	*karta;
 
 	i = 0;
+	n = 0;
+	karta = ft_strnew(1);
 	while (get_next_line(o, &str))
 	{
 		n = n + kolvoreshvstroke(str);
-		if (!((ft_strlen(str) == 4 && n < 5) || (n == 4 && ft_strlen(str) == 0)))
+		if (!((ft_strlen(str) == 4 && n < 5) || (n == 4 && !ft_strlen(str))))
 			return (0);
+		if (ft_strlen(str))
+			i++;
 		if (ft_strlen(str) == 0)
+		{
 			n = 0;
+			if (i != 4)
+				return (0);
+			i = 0;
+		}
+		karta = ft_strrejoin(karta, str);
 	}
-	return (1);
+	return (i == 4 ? 1 : 0);
 }
