@@ -6,14 +6,14 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/26 21:12:37 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/26 21:38:46 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
 unsigned short int	tetramina(char *s);
-char				*tetr_check(unsigned short int u);
+void				tetr_check(unsigned short int u);
 
 int					kolvoreshvstroke(char *s)
 {
@@ -59,6 +59,7 @@ int					kolvoresh(int o)
 		}
 		karta = ft_strrejoin(karta, str);
 	}
+	printf("%s\n", karta);
 	printf("%i\n", tetramina(karta));
 	return (i == 4 ? 1 : 0);
 }
@@ -81,10 +82,23 @@ unsigned short int	tetramina(char *s)
 		}
 		i++;
 	}
+	tetr_check(u[0]);
 	return (u[0]);
 }
 
-char				*tetr_check(unsigned short int u)
+void				tetr_check(unsigned short int u)
 {
+	char	s[16];
+	int		i;
 
+	i = 0;
+	while (i < 16)
+	{
+		if (((32768 >> i) & u))
+			s[i] = '#';
+		else
+			s[i] = '.';
+	i++;
+	}
+	printf("%s\n", s);
 }
