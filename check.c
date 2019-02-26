@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/26 17:08:21 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/26 17:45:32 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		kolvoreshvstroke(char *s)
 	{
 		if (s[i] == '#')
 			n++;
+		if (!(s[i] == '#' || s[i] == '.'))
+			n = 10;
 		i++;
 	}
 	return (n);
@@ -37,13 +39,11 @@ int		kolvoresh(char *file, int o)
 	i = 0;
 	while (get_next_line(o, &str))
 	{
-		while (ft_strlen(str))
-		{
-			if (ft_strlen(str) != 4)
-				return (0);
-			n = n + kolvoreshvstroke(str);
-			printf("%i\n", n);
-		}
+		if (!(ft_strlen(str) == 4 || (n == 4 && ft_strlen(str) == 0)))
+			return (0);
+		n = n + kolvoreshvstroke(str);
+		if (ft_strlen(str) == 0)
+			n = 0;
 	}
 	return (1);
 }
