@@ -6,13 +6,16 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/26 20:34:14 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/26 21:12:37 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-int		kolvoreshvstroke(char *s)
+unsigned short int	tetramina(char *s);
+char				*tetr_check(unsigned short int u);
+
+int					kolvoreshvstroke(char *s)
 {
 	int		i;
 	int		n;
@@ -30,7 +33,7 @@ int		kolvoreshvstroke(char *s)
 	return (n);
 }
 
-int		kolvoresh(int o)
+int					kolvoresh(int o)
 {
 	int		i;
 	char	*str;
@@ -56,6 +59,32 @@ int		kolvoresh(int o)
 		}
 		karta = ft_strrejoin(karta, str);
 	}
-	printf("%s\n", karta);
+	printf("%i\n", tetramina(karta));
 	return (i == 4 ? 1 : 0);
+}
+
+unsigned short int	tetramina(char *s)
+{
+	int					i;
+	unsigned short int	*u;
+	int					l;
+
+	l = ft_strlen(s);
+	u = (unsigned short int *)malloc(sizeof(unsigned short int) * l / 16);
+	u[0] = 0;
+	i = 0;
+	while (i < 16)
+	{
+		if (s[i] == '#')
+		{
+			u[0] |= 1 << (16 - i - 1);
+		}
+		i++;
+	}
+	return (u[0]);
+}
+
+char				*tetr_check(unsigned short int u)
+{
+
 }
