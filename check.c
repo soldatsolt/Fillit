@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/26 19:07:49 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/26 20:34:14 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		kolvoreshvstroke(char *s)
 	return (n);
 }
 
-int		kolvoresh(char *file, int o)
+int		kolvoresh(int o)
 {
 	int		i;
 	char	*str;
@@ -56,5 +56,6 @@ int		kolvoresh(char *file, int o)
 		}
 		karta = ft_strrejoin(karta, str);
 	}
+	printf("%s\n", karta);
 	return (i == 4 ? 1 : 0);
 }
