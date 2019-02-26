@@ -6,10 +6,10 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	gcc fillit.c ./libft/libft.a -o $(NAME)
+	gcc fillit.c check.c ./libft/libft.a -o $(NAME)
 
 g:
-	gcc -g fillit.c ./libft/libft.a
+	gcc -g fillit.c check.c ./libft/libft.a
 
 clean:
 	rm -f $(NAME) 

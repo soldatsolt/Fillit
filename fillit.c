@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/26 16:18:57 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/26 17:03:15 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int		main(int argc, char **argv)
 		buf[r] = '\0';
 		str = ft_strrejoin(str, buf);
 	}
-	printf("%s\n", str);
+	kolvoresh(str, o);
 	return (0);
 }
