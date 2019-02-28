@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/28 18:00:09 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/28 18:25:29 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 unsigned short int	*tetramina(char *s);
 void				tetr_check(unsigned short int *u, int l);
-int					check6or8(unsigned short int *u,  int l);
+int					check6or8(unsigned short int *u,  int l, int n, int k);
 
 int					kolvoreshvstroke(char *s)
 {
@@ -34,15 +34,11 @@ int					kolvoreshvstroke(char *s)
 	return (n);
 }
 
-int					kolvoresh(int o)
+int					kolvoresh(int o, int i, int n)
 {
-	int		i;
 	char	*str;
-	int		n;
 	char	*karta;
 
-	i = 0;
-	n = 0;
 	karta = ft_strnew(1);
 	while (get_next_line(o, &str))
 	{
@@ -62,7 +58,7 @@ int					kolvoresh(int o)
 	}
 	printf("%s\n", karta);
 	printf("%i\n", tetramina(karta)[0]);
-	return (i == 4 ? 1 : 0);
+	return ((i == 4) ? 1 : 0);
 }
 
 unsigned short int	*tetramina(char *s)
@@ -120,17 +116,13 @@ void				tetr_check(unsigned short int *u, int l)
 	}
 	s = s - l;
 	printf("%s\n", s);
-	printf("++%i++\n", check6or8(u, l));
+	printf("++%i++\n", check6or8(u, l, 0, 0));
 }
 
-int					check6or8(unsigned short int *u,  int l)
+int					check6or8(unsigned short int *u,  int l, int n, int k)
 {
-	int		k;
-	int		n;
 	int		i;
 
-	k = 0;
-	n = 0;
 	i = 0;
 	while (k < l / 16)
 	{
@@ -138,13 +130,13 @@ int					check6or8(unsigned short int *u,  int l)
 		{
 			if (((32768 >> i) & u[k]))
 			{
-				if(((32768 >> (i - 1)) & u[k]))
+				if (((32768 >> (i - 1)) & u[k]))
 					n++;
-				if(((32768 >> (i + 1)) & u[k]))
+				if (((32768 >> (i + 1)) & u[k]))
 					n++;
-				if(((32768 >> (i - 4)) & u[k]))
+				if (((32768 >> (i - 4)) & u[k]))
 					n++;
-				if(((32768 >> (i + 4)) & u[k]))
+				if (((32768 >> (i + 4)) & u[k]))
 					n++;
 			}
 			i++;
