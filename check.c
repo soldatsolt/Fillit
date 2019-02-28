@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/28 18:25:29 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/28 21:33:57 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,9 @@ int					check6or8(unsigned short int *u,  int l, int n, int k)
 		{
 			if (((32768 >> i) & u[k]))
 			{
-				if (((32768 >> (i - 1)) & u[k]))
+				if (((32768 >> (i - 1)) & u[k]) && ((i) % 4 != 0))
 					n++;
-				if (((32768 >> (i + 1)) & u[k]))
+				if (((32768 >> (i + 1)) & u[k]) && ((i + 1) % 4 != 0))
 					n++;
 				if (((32768 >> (i - 4)) & u[k]))
 					n++;
@@ -148,4 +148,28 @@ int					check6or8(unsigned short int *u,  int l, int n, int k)
 		n = 0;
 	}
 	return (1);
+}
+
+int					dvizh(unsigned short int u)
+{
+	int		i;
+	int 	n;
+
+	n = 0;
+	while (i < 16)
+		{
+			if (((32768 >> i) & u))
+			{
+				if (((32768 >> (i - 1)) & u))
+					n++;
+				if (((32768 >> (i + 1)) & u))
+					n++;
+				if (((32768 >> (i - 4)) & u))
+					n++;
+				if (((32768 >> (i + 4)) & u))
+					n++;
+			}
+			i++;
+		}
+	return (0);
 }
