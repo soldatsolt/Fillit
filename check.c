@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/28 16:53:27 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/28 17:29:46 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 unsigned short int	*tetramina(char *s);
 void				tetr_check(unsigned short int *u, int l);
+int					check6or8(unsigned short int u,  int l);
 
 int					kolvoreshvstroke(char *s)
 {
@@ -60,7 +61,7 @@ int					kolvoresh(int o)
 		karta = ft_strrejoin(karta, str);
 	}
 	printf("%s\n", karta);
-	printf("%i\n", tetramina(karta)[3]);
+	printf("%i\n", tetramina(karta)[0]);
 	return (i == 4 ? 1 : 0);
 }
 
@@ -119,4 +120,35 @@ void				tetr_check(unsigned short int *u, int l)
 	}
 	s = s - l;
 	printf("%s\n", s);
+	k = 0;
+	while (k < l / 16)
+	{
+		printf("++%i++\n", check6or8(u[k], l));
+		k++;
+	}
+}
+
+int					check6or8(unsigned short int u,  int l)
+{
+	int		n;
+	int		i;
+
+	n = 0;
+	i = 0;
+	while (i < 16)
+	{
+		if (((32768 >> i) & u))
+		{
+			if(((32768 >> (i - 1)) & u))
+				n++;
+			if(((32768 >> (i + 1)) & u))
+				n++;
+			if(((32768 >> (i - 4)) & u))
+				n++;
+			if(((32768 >> (i + 4)) & u))
+				n++;
+		}
+		i++;
+	}
+	return ((n == 6 || n == 8) ? 1 : 0);
 }
