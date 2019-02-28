@@ -6,13 +6,13 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/28 16:29:57 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/28 16:53:27 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-unsigned short int	tetramina(char *s);
+unsigned short int	*tetramina(char *s);
 void				tetr_check(unsigned short int *u, int l);
 
 int					kolvoreshvstroke(char *s)
@@ -60,11 +60,11 @@ int					kolvoresh(int o)
 		karta = ft_strrejoin(karta, str);
 	}
 	printf("%s\n", karta);
-	printf("%i\n", tetramina(karta));
+	printf("%i\n", tetramina(karta)[3]);
 	return (i == 4 ? 1 : 0);
 }
 
-unsigned short int	tetramina(char *s)
+unsigned short int	*tetramina(char *s)
 {
 	int					i;
 	unsigned short int	*u;
@@ -74,6 +74,7 @@ unsigned short int	tetramina(char *s)
 	k = 0;
 	l = ft_strlen(s);
 	u = (unsigned short int *)malloc(sizeof(unsigned short int) * l / 16);
+	ft_bzero(u, l);
 	i = 0;
 	while (k < l / 16)
 	{
@@ -86,11 +87,11 @@ unsigned short int	tetramina(char *s)
 			i++;
 			s++;
 		}
-		i = 0;
 		k++;
+		i = 0;
 	}
-	tetr_check(u, (int)(l / 16));
-	return (u[0]);
+	tetr_check(u, l);
+	return (u);
 }
 
 void				tetr_check(unsigned short int *u, int l)
@@ -100,23 +101,22 @@ void				tetr_check(unsigned short int *u, int l)
 	int		k;
 
 	k = 0;
+	s = ft_strnew(l);
 	i = 0;
-	s = ft_strnew(l * 16);
-	while (k < l)
+	while (k < l / 16)
 	{
-		printf("%i\n", u[k]);
 		while (i < 16)
 		{
 			if (((32768 >> i) & u[k]))
 				*s = '#';
 			else
 				*s = '.';
-			s++;
 			i++;
+			s++;
 		}
-		k++;
 		i = 0;
+		k++;
 	}
-	s = s - (l * 16);
+	s = s - l;
 	printf("%s\n", s);
 }
