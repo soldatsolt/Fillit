@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/28 17:29:46 by kmills           ###   ########.fr       */
+/*   Updated: 2019/02/28 18:00:09 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 unsigned short int	*tetramina(char *s);
 void				tetr_check(unsigned short int *u, int l);
-int					check6or8(unsigned short int u,  int l);
+int					check6or8(unsigned short int *u,  int l);
 
 int					kolvoreshvstroke(char *s)
 {
@@ -120,35 +120,40 @@ void				tetr_check(unsigned short int *u, int l)
 	}
 	s = s - l;
 	printf("%s\n", s);
-	k = 0;
-	while (k < l / 16)
-	{
-		printf("++%i++\n", check6or8(u[k], l));
-		k++;
-	}
+	printf("++%i++\n", check6or8(u, l));
 }
 
-int					check6or8(unsigned short int u,  int l)
+int					check6or8(unsigned short int *u,  int l)
 {
+	int		k;
 	int		n;
 	int		i;
 
+	k = 0;
 	n = 0;
 	i = 0;
-	while (i < 16)
+	while (k < l / 16)
 	{
-		if (((32768 >> i) & u))
+		while (i < 16)
 		{
-			if(((32768 >> (i - 1)) & u))
-				n++;
-			if(((32768 >> (i + 1)) & u))
-				n++;
-			if(((32768 >> (i - 4)) & u))
-				n++;
-			if(((32768 >> (i + 4)) & u))
-				n++;
+			if (((32768 >> i) & u[k]))
+			{
+				if(((32768 >> (i - 1)) & u[k]))
+					n++;
+				if(((32768 >> (i + 1)) & u[k]))
+					n++;
+				if(((32768 >> (i - 4)) & u[k]))
+					n++;
+				if(((32768 >> (i + 4)) & u[k]))
+					n++;
+			}
+			i++;
 		}
-		i++;
+		if (!(n == 8 || n == 6))
+			return (0);
+		i = 0;
+		k++;
+		n = 0;
 	}
-	return ((n == 6 || n == 8) ? 1 : 0);
+	return (1);
 }
