@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 16:30:16 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 16:44:37 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 unsigned short int	*tetramina(char *s);
 void				tetr_check(unsigned short int *u, int l);
 int					check6or8(unsigned short int *u,  int l, int n, int k);
-int					dvizh_vverkh(unsigned short int u, int i, int n);
+int					dvizh_vverkh(unsigned short int *u, int i, int n);
 
 int					kolvoreshvstroke(char *s)
 {
@@ -124,7 +124,7 @@ void				tetr_check(unsigned short int *u, int l)
 	printf("++++++%i++++++\n\n\n", check6or8(u, l, 0, 0));
 	while (i < l / 16)
 	{
-		while (dvizh_vverkh(u[i], 0, 0))
+		while (dvizh_vverkh(&u[i], 0, 0))
 			i = i;
 		i++;
 	}
@@ -189,23 +189,25 @@ int					check6or8(unsigned short int *u,  int l, int n, int k)
 	return (1);
 }
 
-int					dvizh_vverkh(unsigned short int u, int i, int n)
+int					dvizh_vverkh(unsigned short int *u, int i, int n)
 {
-	while (i < 4)
-	{
-		if (((32768 >> i) & u))
-			n = 1;
-		i++;
-	}
-	if (!n)
-		u = u << 4;
 	i = 0;
 	while (i < 4)
 	{
-		if (((32768 >> i) & u))
-			n = 3;
+		if (((32768 >> i) & *u)) // значит, вверху что-то есть
+			n = 1; // значит, вверху что-то есть
 		i++;
 	}
-	tetrr_check(&u, 16);
-	return ((n == 3) ? 1 : 0);
+	if (!n)
+		*u = *u << 4; // двигаем вверх)))
+	i = 0;
+	while (i < 4)
+	{
+		if (((32768 >> i) & *u)) // значит, вверху что-то есть
+			n = 3; // значит, вверху что-то есть
+		i++;
+	}
+	tetrr_check(u, 16);
+	printf("%i\n", n);
+	return ((n > 2) ? 0 : 1);
 }
