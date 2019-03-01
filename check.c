@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 15:13:43 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 16:26:18 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 unsigned short int	*tetramina(char *s);
 void				tetr_check(unsigned short int *u, int l);
 int					check6or8(unsigned short int *u,  int l, int n, int k);
+int					dvizh_vverkh(unsigned short int u, int i, int n);
 
 int					kolvoreshvstroke(char *s)
 {
@@ -117,9 +118,44 @@ void				tetr_check(unsigned short int *u, int l)
 		k++;
 		printf("\n");
 	}
+	i = 0;
 	s = s - l;
 	printf("\n");
-	printf("++%i++\n", check6or8(u, l, 0, 0));
+	printf("++++++%i++++++\n\n\n", check6or8(u, l, 0, 0));
+	while (i < l / 16)
+	{
+		while (dvizh_vverkh(u[i], 0, 0))
+			i = i;
+		i++;
+	}
+}
+
+void				tetrr_check(unsigned short int *u, int l) // просто нарисовать
+{
+	char	*s;
+	int		i;
+	int		k;
+
+	k = 0;
+	s = ft_strnew(l);
+	i = 0;
+	while (k < l / 16)
+	{
+		while (i < 16)
+		{
+			if (((32768 >> i) & u[k]))
+				printf("#");
+			else
+				printf(".");
+			i++;
+			s++;
+			if ((i + 1) % 4 == 1)
+				printf("\n");
+		}
+		i = 0;
+		k++;
+		printf("\n");
+	}
 }
 
 int					check6or8(unsigned short int *u,  int l, int n, int k)
@@ -153,26 +189,23 @@ int					check6or8(unsigned short int *u,  int l, int n, int k)
 	return (1);
 }
 
-int					dvizh(unsigned short int u)
+int						dvizh_vverkh(unsigned short int u, int i, int n)
 {
-	int		i;
-	int 	n;
-
-	n = 0;
 	while (i < 4)
-		{
-			if (((32768 >> i) & u))
-			{
-				if (((32768 >> (i - 1)) & u))
-					n++;
-				if (((32768 >> (i + 1)) & u))
-					n++;
-				if (((32768 >> (i - 4)) & u))
-					n++;
-				if (((32768 >> (i + 4)) & u))
-					n++;
-			}
-			i++;
-		}
-	return (0);
+	{
+		if (((32768 >> i) & u))
+			n = 1;
+		i++;
+	}
+	if (!n)
+		u = u << 4;
+	i = 0;
+	while (i < 4)
+	{
+		if (((32768 >> i) & u))
+			n = 0;
+		i++;
+	}
+	tetrr_check(&u, 16);
+	return ((n == 0) ? 0 : 1);
 }
