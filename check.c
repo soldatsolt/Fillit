@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 16:26:18 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 16:30:16 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ int					check6or8(unsigned short int *u,  int l, int n, int k)
 	return (1);
 }
 
-int						dvizh_vverkh(unsigned short int u, int i, int n)
+int					dvizh_vverkh(unsigned short int u, int i, int n)
 {
 	while (i < 4)
 	{
@@ -203,9 +203,9 @@ int						dvizh_vverkh(unsigned short int u, int i, int n)
 	while (i < 4)
 	{
 		if (((32768 >> i) & u))
-			n = 0;
+			n = 3;
 		i++;
 	}
 	tetrr_check(&u, 16);
-	return ((n == 0) ? 0 : 1);
+	return ((n == 3) ? 1 : 0);
 }
