@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/28 22:16:01 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 15:13:43 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int					kolvoresh(int o, int i, int n)
 		}
 		karta = ft_strrejoin(karta, str);
 	}
-	printf("%s\n", karta);
+	// printf("%s\n", karta);
 	printf("%i\n", tetramina(karta)[0]);
 	return ((i == 4) ? 1 : 0);
 }
@@ -105,17 +105,20 @@ void				tetr_check(unsigned short int *u, int l)
 		while (i < 16)
 		{
 			if (((32768 >> i) & u[k]))
-				*s = '#';
+				printf("#");
 			else
-				*s = '.';
+				printf(".");
 			i++;
 			s++;
+			if ((i + 1) % 4 == 1)
+				printf("\n");
 		}
 		i = 0;
 		k++;
+		printf("\n");
 	}
 	s = s - l;
-	printf("%s\n", s);
+	printf("\n");
 	printf("++%i++\n", check6or8(u, l, 0, 0));
 }
 
