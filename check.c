@@ -6,17 +6,18 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 17:24:16 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 19:25:19 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-unsigned short int	*tetramina(char *s, int sym);
+unsigned short int	*tetramina(char *s, int k, int sym, int l);
 void				tetr_check(unsigned short int *u, int l);
 int					check6or8(unsigned short int *u,  int l, int n, int k);
 int					dvizh_vverkh(unsigned short int *u, int i, int n);
 int					dvizh_vlevo(unsigned short int *u, int i, int n);
+void				tetrr_check(unsigned short int *u, int l);
 
 int					kolvoreshvstroke(char *s)
 {
@@ -36,7 +37,7 @@ int					kolvoreshvstroke(char *s)
 	return (n);
 }
 
-int					kolvoresh(int o, int i, int n)
+int					kolvoresh(int o, int i, int n, unsigned short int *u)
 {
 	char	*str;
 	char	*karta;
@@ -58,20 +59,15 @@ int					kolvoresh(int o, int i, int n)
 		}
 		karta = ft_strrejoin(karta, str);
 	}
-	// printf("%s\n", karta);
-	printf("%i\n", tetramina(karta, 0)[0]);
+	u = tetramina(karta, 0, 0, ft_strlen(karta));
 	return ((i == 4) ? 1 : 0);
 }
 
-unsigned short int	*tetramina(char *s, int sym)
+unsigned short int	*tetramina(char *s, int k, int sym, int l)
 {
 	int					i;
 	unsigned short int	*u;
-	int					l;
-	int					k;
 
-	k = 0;
-	l = ft_strlen(s);
 	u = (unsigned short int *)malloc(sizeof(*u) * (l / 16));
 	ft_bzero(u, (l / 8));
 	i = 0;
@@ -136,9 +132,10 @@ void				tetr_check(unsigned short int *u, int l)
 			i = i;
 		i++;
 	}
+	tetrr_check(u, l);
 }
 
-void				tetrr_check(unsigned short int *u, int l) // просто нарисовать
+void				tetrr_check(unsigned short int *u, int l)
 {
 	char	*s;
 	int		i;
@@ -201,17 +198,17 @@ int					dvizh_vverkh(unsigned short int *u, int i, int n)
 {
 	while (i < 4)
 	{
-		if (((32768 >> i) & *u)) // значит, вверху что-то есть
-			n = 1; // значит, вверху что-то есть
+		if (((32768 >> i) & *u))
+			n = 1;
 		i++;
 	}
 	if (!n)
-		*u = *u << 4; // двигаем вверх)))
+		*u = *u << 4;
 	i = 0;
 	while (i < 4)
 	{
-		if (((32768 >> i) & *u)) // значит, вверху что-то есть
-			n = 3; // значит, вверху что-то есть
+		if (((32768 >> i) & *u))
+			n = 3;
 		i++;
 	}
 	return ((n > 2) ? 0 : 1);
@@ -221,19 +218,19 @@ int					dvizh_vlevo(unsigned short int *u, int i, int n)
 {
 	while (i < 16)
 	{
-		if (((32768 >> i) & *u)) // значит, вверху что-то есть
-			n = 1; // значит, вверху что-то есть
+		if (((32768 >> i) & *u))
+			n = 1;
 		i = i + 4;
 	}
 	if (!n)
-		*u = *u << 1; // двигаем вверх)))
+		*u = *u << 1;
 	i = 0;
 	while (i < 16)
 	{
-		if (((32768 >> i) & *u)) // значит, вверху что-то есть
-			n = 3; // значит, вверху что-то есть
+		if (((32768 >> i) & *u))
+			n = 3;
 		i = i + 4;
 	}
-	tetrr_check(u, 16);
 	return ((n > 2) ? 0 : 1);
 }
+
