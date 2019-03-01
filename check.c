@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 20:48:01 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 21:18:57 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,58 +28,6 @@ int					kolvoreshvstroke(char *s)
 		i++;
 	}
 	return (n);
-}
-
-int					kolvoresh(int o, int i, int n, unsigned short int *u)
-{
-	char	*str;
-	char	*karta;
-
-	karta = ft_strnew(1);
-	while (get_next_line(o, &str))
-	{
-		n = n + kolvoreshvstroke(str);
-		if (!((ft_strlen(str) == 4 && n < 5) || (n == 4 && !ft_strlen(str))))
-			return (0);
-		if (ft_strlen(str))
-			i++;
-		if (ft_strlen(str) == 0)
-		{
-			n = 0;
-			if (i != 4)
-				return (0);
-			i = 0;
-		}
-		karta = ft_strrejoin(karta, str);
-	}
-	u = tetramina(karta, 0, 0, ft_strlen(karta));
-	free(karta);
-	return (((i == 4) && u) ? 1 : 0);
-}
-
-unsigned short int	*tetramina(char *s, int k, int sym, int l)
-{
-	int					i;
-	unsigned short int	*u;
-
-	u = (unsigned short int *)malloc(sizeof(*u) * (l / 16));
-	ft_bzero(u, (l / 8));
-	i = 0;
-	while (k < (l / 16))
-	{
-		while (i < 16)
-		{
-			if (s[sym] == '#')
-			{
-				u[k] |= 1 << (16 - i - 1);
-			}
-			i++;
-			sym++;
-		}
-		k++;
-		i = 0;
-	}
-	return ((tetr_check(u, l, 1)) ? u : NULL);
 }
 
 int					tetr_check(unsigned short int *u, int l, int k)
@@ -115,7 +63,7 @@ int					check6or8(unsigned short int u, int l, int n)
 	int		i;
 
 	i = 0;
-	while (i < 16)
+	while (i < 16 && n <= 8)
 	{
 		if (((32768 >> i) & u))
 		{
