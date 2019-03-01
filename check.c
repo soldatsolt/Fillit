@@ -6,15 +6,15 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 19:51:35 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 20:28:21 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
 unsigned short int	*tetramina(char *s, int k, int sym, int l);
-void				tetr_check(unsigned short int *u, int l);
-int					check6or8(unsigned short int u,  int l, int n);
+int					tetr_check(unsigned short int *u, int l, int k);
+int					check6or8(unsigned short int u, int l, int n);
 int					dvizh_vverkh(unsigned short int *u, int i, int n);
 int					dvizh_vlevo(unsigned short int *u, int i, int n);
 
@@ -59,7 +59,7 @@ int					kolvoresh(int o, int i, int n, unsigned short int *u)
 		karta = ft_strrejoin(karta, str);
 	}
 	u = tetramina(karta, 0, 0, ft_strlen(karta));
-	return ((i == 4) ? 1 : 0);
+	return (((i == 4) && u) ? 1 : 0);
 }
 
 unsigned short int	*tetramina(char *s, int k, int sym, int l)
@@ -84,20 +84,18 @@ unsigned short int	*tetramina(char *s, int k, int sym, int l)
 		k++;
 		i = 0;
 	}
-	tetr_check(u, l);
-	return (u);
+	return ((tetr_check(u, l, 1)) ? u : NULL);
 }
 
-void				tetr_check(unsigned short int *u, int l)
+int					tetr_check(unsigned short int *u, int l, int k)
 {
 	int		i;
-	int		k;
 
 	i = 0;
 	while (i < l / 16)
 	{
 		if (!(check6or8(u[i], l, 0)))
-			return ; // мб тип функции поменять или ещё что-то я хз что сделать, чтобы это ушло в мэйн
+			k = 0;
 		i++;
 	}
 	i = 0;
@@ -114,6 +112,7 @@ void				tetr_check(unsigned short int *u, int l)
 			i = i;
 		i++;
 	}
+	return ((k) ? 1 : 0);
 }
 
 int					check6or8(unsigned short int u,  int l, int n)
