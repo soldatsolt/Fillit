@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 19:35:49 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 19:37:17 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void				tetr_check(unsigned short int *u, int l);
 int					check6or8(unsigned short int *u,  int l, int n, int k);
 int					dvizh_vverkh(unsigned short int *u, int i, int n);
 int					dvizh_vlevo(unsigned short int *u, int i, int n);
-void				tetrr_check(unsigned short int *u, int l);
 
 int					kolvoreshvstroke(char *s)
 {
@@ -108,35 +107,6 @@ void				tetr_check(unsigned short int *u, int l)
 		while (dvizh_vlevo(&u[i], 0, 0))
 			i = i;
 		i++;
-	}
-	tetrr_check(u, l);
-}
-
-void				tetrr_check(unsigned short int *u, int l)
-{
-	char	*s;
-	int		i;
-	int		k;
-
-	k = 0;
-	s = ft_strnew(l);
-	i = 0;
-	while (k < l / 16)
-	{
-		while (i < 16)
-		{
-			if (((32768 >> i) & u[k]))
-				printf("#");
-			else
-				printf(".");
-			i++;
-			s++;
-			if ((i + 1) % 4 == 1)
-				printf("\n");
-		}
-		i = 0;
-		k++;
-		printf("\n");
 	}
 }
 
