@@ -6,13 +6,13 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 16:48:52 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 17:13:25 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 
-unsigned short int	*tetramina(char *s);
+unsigned short int	*tetramina(char *s, int sym);
 void				tetr_check(unsigned short int *u, int l);
 int					check6or8(unsigned short int *u,  int l, int n, int k);
 int					dvizh_vverkh(unsigned short int *u, int i, int n);
@@ -59,11 +59,11 @@ int					kolvoresh(int o, int i, int n)
 		karta = ft_strrejoin(karta, str);
 	}
 	// printf("%s\n", karta);
-	printf("%i\n", tetramina(karta)[0]);
+	printf("%i\n", tetramina(karta, 0)[0]);
 	return ((i == 4) ? 1 : 0);
 }
 
-unsigned short int	*tetramina(char *s)
+unsigned short int	*tetramina(char *s, int sym)
 {
 	int					i;
 	unsigned short int	*u;
@@ -72,20 +72,24 @@ unsigned short int	*tetramina(char *s)
 
 	k = 0;
 	l = ft_strlen(s);
-	u = (unsigned short int *)malloc(sizeof(unsigned short int) * l / 16);
+	u = (unsigned short int *)malloc(sizeof(unsigned short int) * (l / 16));
 	ft_bzero(u, l);
 	i = 0;
-	while (k < l / 16)
+	// printf("\n\n\n\n\n______----%i----______\n\n\n\n\n", sym);
+	while (k < (l / 16))
 	{
 		while (i < 16)
 		{
-			if (*s == '#')
+			if (s[sym] == '#')
 			{
+				// printf("@\n");
 				u[k] |= 1 << (16 - i - 1);
 			}
 			i++;
-			s++;
+			printf("%c", s[sym]);
+			sym++;
 		}
+		printf("%i\n", u[k]);
 		k++;
 		i = 0;
 	}
@@ -123,19 +127,19 @@ void				tetr_check(unsigned short int *u, int l)
 	s = s - l;
 	printf("\n");
 	printf("++++++%i++++++\n\n\n", check6or8(u, l, 0, 0));
-	while (i < l / 16)
-	{
-		while (dvizh_vverkh(&u[i], 0, 0))
-			i = i;
-		i++;
-	}
-	i = 0;
-	while (i < l / 16)
-	{
-		while (dvizh_vlevo(&u[i], 0, 0))
-			i = i;
-		i++;
-	}
+	// while (i < l / 16)
+	// {
+	// 	while (dvizh_vverkh(&u[i], 0, 0))
+	// 		i = i;
+	// 	i++;
+	// }
+	// i = 0;
+	// while (i < l / 16)
+	// {
+	// 	while (dvizh_vlevo(&u[i], 0, 0))
+	// 		i = i;
+	// 	i++;
+	// }
 }
 
 void				tetrr_check(unsigned short int *u, int l) // просто нарисовать
@@ -214,7 +218,6 @@ int					dvizh_vverkh(unsigned short int *u, int i, int n)
 			n = 3; // значит, вверху что-то есть
 		i++;
 	}
-	tetrr_check(u, 16);
 	return ((n > 2) ? 0 : 1);
 }
 
