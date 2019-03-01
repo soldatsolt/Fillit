@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 17:13:25 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 17:22:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,25 @@ unsigned short int	*tetramina(char *s, int sym)
 
 	k = 0;
 	l = ft_strlen(s);
-	u = (unsigned short int *)malloc(sizeof(unsigned short int) * (l / 16));
-	ft_bzero(u, l);
+	u = (unsigned short int *)malloc(sizeof(*u) * (l / 16));
+	ft_bzero(u, (l / 8));
 	i = 0;
 	// printf("\n\n\n\n\n______----%i----______\n\n\n\n\n", sym);
 	while (k < (l / 16))
 	{
 		while (i < 16)
 		{
+			// printf("%i", i);
 			if (s[sym] == '#')
 			{
 				// printf("@\n");
 				u[k] |= 1 << (16 - i - 1);
 			}
 			i++;
-			printf("%c", s[sym]);
+			// printf("%c", s[sym]);
 			sym++;
 		}
-		printf("%i\n", u[k]);
+		// printf("%i\n", u[k]);
 		k++;
 		i = 0;
 	}
