@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 19:37:17 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 19:51:35 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 unsigned short int	*tetramina(char *s, int k, int sym, int l);
 void				tetr_check(unsigned short int *u, int l);
-int					check6or8(unsigned short int *u,  int l, int n, int k);
+int					check6or8(unsigned short int u,  int l, int n);
 int					dvizh_vverkh(unsigned short int *u, int i, int n);
 int					dvizh_vlevo(unsigned short int *u, int i, int n);
 
@@ -93,7 +93,13 @@ void				tetr_check(unsigned short int *u, int l)
 	int		i;
 	int		k;
 
-	k = check6or8(u, l, 0, 0);
+	i = 0;
+	while (i < l / 16)
+	{
+		if (!(check6or8(u[i], l, 0)))
+			return ; // мб тип функции поменять или ещё что-то я хз что сделать, чтобы это ушло в мэйн
+		i++;
+	}
 	i = 0;
 	while (i < l / 16)
 	{
@@ -110,34 +116,28 @@ void				tetr_check(unsigned short int *u, int l)
 	}
 }
 
-int					check6or8(unsigned short int *u,  int l, int n, int k)
+int					check6or8(unsigned short int u,  int l, int n)
 {
 	int		i;
 
 	i = 0;
-	while (k < l / 16)
+	while (i < 16)
 	{
-		while (i < 16)
+		if (((32768 >> i) & u))
 		{
-			if (((32768 >> i) & u[k]))
-			{
-				if (((32768 >> (i - 1)) & u[k]) && ((i) % 4 != 0))
-					n++;
-				if (((32768 >> (i + 1)) & u[k]) && ((i + 1) % 4 != 0))
-					n++;
-				if (((32768 >> (i - 4)) & u[k]))
-					n++;
-				if (((32768 >> (i + 4)) & u[k]))
-					n++;
-			}
-			i++;
+			if (((32768 >> (i - 1)) & u) && ((i) % 4 != 0))
+				n++;
+			if (((32768 >> (i + 1)) & u) && ((i + 1) % 4 != 0))
+				n++;
+			if (((32768 >> (i - 4)) & u))
+				n++;
+			if (((32768 >> (i + 4)) & u))
+				n++;
 		}
-		if (!(n == 8 || n == 6))
-			return (0);
-		i = 0;
-		k++;
-		n = 0;
+		i++;
 	}
+	if (!(n == 8 || n == 6))
+		return (0);
 	return (1);
 }
 
