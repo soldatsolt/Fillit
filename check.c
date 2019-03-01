@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 19:25:19 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 19:35:49 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,34 +91,11 @@ unsigned short int	*tetramina(char *s, int k, int sym, int l)
 
 void				tetr_check(unsigned short int *u, int l)
 {
-	char	*s;
 	int		i;
 	int		k;
 
-	k = 0;
-	s = ft_strnew(l);
+	k = check6or8(u, l, 0, 0);
 	i = 0;
-	while (k < l / 16)
-	{
-		while (i < 16)
-		{
-			if (((32768 >> i) & u[k]))
-				printf("#");
-			else
-				printf(".");
-			i++;
-			s++;
-			if ((i + 1) % 4 == 1)
-				printf("\n");
-		}
-		i = 0;
-		k++;
-		printf("\n");
-	}
-	i = 0;
-	s = s - l;
-	printf("\n");
-	printf("++++++%i++++++\n\n\n", check6or8(u, l, 0, 0));
 	while (i < l / 16)
 	{
 		while (dvizh_vverkh(&u[i], 0, 0))
