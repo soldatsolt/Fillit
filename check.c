@@ -6,17 +6,11 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 20:28:21 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 20:48:01 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-
-unsigned short int	*tetramina(char *s, int k, int sym, int l);
-int					tetr_check(unsigned short int *u, int l, int k);
-int					check6or8(unsigned short int u, int l, int n);
-int					dvizh_vverkh(unsigned short int *u, int i, int n);
-int					dvizh_vlevo(unsigned short int *u, int i, int n);
+#include "fillit.h"
 
 int					kolvoreshvstroke(char *s)
 {
@@ -59,6 +53,7 @@ int					kolvoresh(int o, int i, int n, unsigned short int *u)
 		karta = ft_strrejoin(karta, str);
 	}
 	u = tetramina(karta, 0, 0, ft_strlen(karta));
+	free(karta);
 	return (((i == 4) && u) ? 1 : 0);
 }
 
@@ -115,7 +110,7 @@ int					tetr_check(unsigned short int *u, int l, int k)
 	return ((k) ? 1 : 0);
 }
 
-int					check6or8(unsigned short int u,  int l, int n)
+int					check6or8(unsigned short int u, int l, int n)
 {
 	int		i;
 
@@ -179,4 +174,3 @@ int					dvizh_vlevo(unsigned short int *u, int i, int n)
 	}
 	return ((n > 2) ? 0 : 1);
 }
-

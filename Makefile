@@ -27,3 +27,6 @@ git:
 	git add .
 	git commit -am "$(G)"
 	git push
+
+val: re
+	valgrind --leak-check=full  ./fillit $(G)

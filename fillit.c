@@ -6,13 +6,11 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/01 19:21:45 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/01 20:47:45 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-
-int		kolvoresh(int o, int i, int n, unsigned short int *u);
+#include "fillit.h"
 
 int		main(int argc, char **argv)
 {
