@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/04 21:17:59 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/04 23:22:26 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int					main(int argc, char **argv)
 {
-	int					o;
-	unsigned short int	*u;
+	int						o;
+	unsigned short int		*u;
+	unsigned long long int mapa;
 
 	if (argc > 1)
 		o = open(argv[1], O_RDONLY);

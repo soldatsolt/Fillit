@@ -6,22 +6,25 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/04 21:09:56 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/04 23:30:06 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void				karta(unsigned short int *u, int l)
+unsigned long long int	karta(unsigned short int *u, int l)
 {
-	int		min_size;
+	int						min_size;
+	unsigned long long int	mapa;
 
+	mapa = 0;
 	printf("<%i>\n", l);
 	min_size = min_map_size(l * 4);
 	printf("<%i>\n", min_size);
+	mapa = mod_karta(u, mapa, min_size);
 }
 
-int					min_map_size(int l)
+int						min_map_size(int l)
 {
 	int	n;
 	int	qw;
@@ -34,4 +37,10 @@ int					min_map_size(int l)
 		qw = n * n;
 	}
 	return (n);
+}
+
+unsigned long long int	mod_karta(unsigned short int *u, unsigned long long\
+ int mapa, int min_size)
+{
+	
 }
