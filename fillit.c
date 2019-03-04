@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/04 20:53:18 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/04 21:17:59 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,5 @@ unsigned short int	*tetramina(char *s, int k, int sym, int l)
 		k++;
 		i = 0;
 	}
-	return ((tetr_check(u, l, 1)) ? u : NULL);
+	return ((tetr_check(u, l, 1) && (g_len < 27)) ? u : NULL);
 }
