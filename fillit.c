@@ -6,25 +6,31 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/04 17:18:42 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/04 20:53:18 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
-	int		o;
-	int		r;
+	int					o;
+	unsigned short int	*u;
 
 	if (argc > 1)
 		o = open(argv[1], O_RDONLY);
-	r = kolvoresh(o, 0, 0, NULL);
-	printf("___%i___\n", r);
+	u = kolvoresh(o, 0, 0, NULL);
+	if (u)
+	{
+		karta(u, g_len);
+	}
+	else
+		write(1, "error\n", 6);
+	printf("___%p___\n", u);
 	return (0);
 }
 
-int					kolvoresh(int o, int i, int n, unsigned short int *u)
+unsigned short int	*kolvoresh(int o, int i, int n, unsigned short int *u)
 {
 	char	*str;
 	char	*karta;
@@ -48,7 +54,7 @@ int					kolvoresh(int o, int i, int n, unsigned short int *u)
 	}
 	u = tetramina(karta, 0, 0, ft_strlen(karta));
 	free(karta);
-	return (((i == 4) && u) ? 1 : 0);
+	return (((i == 4) && u) ? u : NULL);
 }
 
 unsigned short int	*tetramina(char *s, int k, int sym, int l)
@@ -56,6 +62,7 @@ unsigned short int	*tetramina(char *s, int k, int sym, int l)
 	int					i;
 	unsigned short int	*u;
 
+	g_len = l / 16;
 	u = (unsigned short int *)malloc(sizeof(*u) * (l / 16));
 	ft_bzero(u, (l / 8));
 	i = 0;
@@ -70,7 +77,6 @@ unsigned short int	*tetramina(char *s, int k, int sym, int l)
 			i++;
 			sym++;
 		}
-		printf("+%i+\n", u[k]);
 		k++;
 		i = 0;
 	}
