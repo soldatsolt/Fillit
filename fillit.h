@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/04 23:29:57 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/05 00:02:30 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ unsigned short int		*kolvoresh(int o, int i, int n, unsigned short int *u);
 unsigned long long int	karta(unsigned short int *u, int l);
 int						min_map_size(int l);
 unsigned long long int	mod_karta(unsigned short int *u, unsigned long long\
- int mapa, int min_size)
+ int mapa, int min_size);
 
 #endif
