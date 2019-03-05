@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/04 23:22:26 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/05 05:26:08 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int					main(int argc, char **argv)
 	}
 	else
 		write(1, "error\n", 6);
-	printf("___%p___\n", u);
 	return (0);
 }
 
