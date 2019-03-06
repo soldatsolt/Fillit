@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/06 15:44:04 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/06 16:02:37 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@ unsigned long long int	karta(unsigned short int *u, int l)
 {
 	int						min_size;
 	unsigned long long int	mapa;
+	int						k;
 
+	k = 0;
 	mapa = 0;
 	min_size = min_map_size(l * 4);
-	mapa = mod_karta(u[0], mapa, min_size);
-	mapa = mod_karta(u[1], mapa, min_size);
+	while (k < l)
+	{
+		mapa = mod_karta(u[k], mapa, min_size);//tyt poka 64 bita vseg0
+		k++;
+	}
 	printf("><%llu><\n", mapa);
 	return (mapa);
 }
