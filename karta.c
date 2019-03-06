@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/05 07:35:42 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/06 15:44:04 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ unsigned long long int	karta(unsigned short int *u, int l)
 
 	mapa = 0;
 	min_size = min_map_size(l * 4);
-	mapa = mod_karta(u, mapa, min_size);
+	mapa = mod_karta(u[0], mapa, min_size);
+	mapa = mod_karta(u[1], mapa, min_size);
+	printf("><%llu><\n", mapa);
 	return (mapa);
 }
 
@@ -38,17 +40,21 @@ int						min_map_size(int l)
 	return (n);
 }
 
-unsigned long long int	mod_karta(unsigned short int *u, unsigned long long\
+unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	int mapa, int min_size)
 {
-	unsigned long long int imax;
+	unsigned long long int	imax;
+	unsigned long long int	llu;
+	int						i;
 
 	imax = 1;
+	i = 0;
 	imax = imax << 63;
+	llu = u;
 	// printf("><%llu><\n", imax);
-	mapa = u[0];
-	mapa = mapa << 48;
-	printf("><%llu><\n", mapa);
+	while (((mapa ^ llu << (48 - i)) != ((mapa | llu << (48 - i)))))
+		i++;
+		mapa = mapa + (llu << (48 - i));
 	return (mapa);
 }
 
