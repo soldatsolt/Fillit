@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/15 19:50:30 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/15 20:42:27 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,34 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	unsigned long long int	imax;
 	unsigned long long int	llu;
 	int						i;
+	unsigned long long int	llut;
 
-	imax = 1;
+	llu = 0;
 	i = 0;
+	llut = u;
+	imax = 1;
 	imax = imax << 63;
-	llu = u;
-	// printf("><%llu><\n", imax);
-	while (((mapa ^ llu << (48 - i)) != ((mapa | llu << (48 - i)))))
+	while (i < 16) // где-то тут нужно посмотреть
+	{
+		if (((32768 >> i) & llut) && (i < 4))
+			llu = llu + (llut << 48); // скорее всего, ошибка тут
+			// нужно прибавлять только одну единичку, а не целое число ллут << 48
+		else if (((32768 >> i) & llut) && (i >= 4 && i < 8))
+			llu = llu + (llut << 44);
+		else if (((32768 >> i) & llut) && (i >= 8 && i < 12))
+			llu = llu + (llut << 40);
+		else if (((32768 >> i) & llut) && (i >= 12 && i < 16))
+			llu = llu + (llut << 36);
 		i++;
-		mapa = mapa + (llu << (48 - i));
+		printf("при i = %i\n", i);
+		naris(llu);
+		printf("____NEW CYCLE____\n");
+	}
+	i = 0;
+	// printf("><%llu><\n", imax);
+	while (((mapa ^ llu << (0 - i)) != ((mapa | llu << (0 - i)))))
+		i++;
+		mapa = mapa + (llu << (0 - i));
 	return (mapa);
 }
 
