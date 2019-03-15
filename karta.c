@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/06 16:02:37 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/15 19:50:30 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ unsigned long long int	karta(unsigned short int *u, int l)
 		k++;
 	}
 	printf("><%llu><\n", mapa);
+	naris(mapa);
 	return (mapa);
 }
 
@@ -63,3 +64,27 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	return (mapa);
 }
 
+void					naris(unsigned long long int llu)
+{
+	char					*s;
+	int						i;
+	int						k;
+	unsigned long long int	imax;
+
+	imax = 1;
+	imax = imax << 63;
+	k = 0;
+	i = 0;
+	while (i < 64)
+	{
+		if (((imax >> i) & llu))
+			printf("#");
+		else
+			printf(".");
+		i++;
+		s++;
+		if ((i + 1) % 8 == 1)
+			printf("\n");
+	}
+	printf("\n");
+}

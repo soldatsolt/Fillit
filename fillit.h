@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/06 15:17:30 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/15 19:49:28 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ unsigned long long int	karta(unsigned short int *u, int l);
 int						min_map_size(int l);
 unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	int mapa, int min_size);
+void					naris(unsigned long long int llu);
 
 #endif
