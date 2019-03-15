@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/15 20:42:27 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/15 20:54:26 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 {
 	unsigned long long int	imax;
 	unsigned long long int	llu;
-	int						i;
+	unsigned long long int	i;
 	unsigned long long int	llut;
 
 	llu = 0;
@@ -62,16 +62,16 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	while (i < 16) // где-то тут нужно посмотреть
 	{
 		if (((32768 >> i) & llut) && (i < 4))
-			llu = llu + (llut << 48); // скорее всего, ошибка тут
+			llu = llu + ((32768 << (48 - i))); // скорее всего, ошибка тут
 			// нужно прибавлять только одну единичку, а не целое число ллут << 48
 		else if (((32768 >> i) & llut) && (i >= 4 && i < 8))
-			llu = llu + (llut << 44);
+			llu = llu + ((32768 << (44 - i)));
 		else if (((32768 >> i) & llut) && (i >= 8 && i < 12))
-			llu = llu + (llut << 40);
+			llu = llu + ((32768 << (40 - i)));
 		else if (((32768 >> i) & llut) && (i >= 12 && i < 16))
-			llu = llu + (llut << 36);
+			llu = llu + ((32768 << (36 - i)));
 		i++;
-		printf("при i = %i\n", i);
+		printf("при i = %llu\n", i);
 		naris(llu);
 		printf("____NEW CYCLE____\n");
 	}
