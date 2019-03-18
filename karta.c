@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 01:44:50 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 01:55:36 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ u_int64_t	karta(unsigned short int *u, int l)
 	}
 	printf("><%llu><\n", mapa);
 	naris(mapa);
+	naris_massiv_tetr(0, 0, prav_tetr, l);
 	return (mapa);
 }
 
-int						min_map_size(int l)
+int			min_map_size(int l)
 {
 	int	n;
 	int	qw;
@@ -80,14 +81,18 @@ u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu)
 {
 	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))))
 		i++;
-		mapa |= (llu >> i);
+	mapa |= (llu >> i);
 	naris(mapa);
 	return (mapa);
 }
 
-void					naris(u_int64_t llu)
+void		naris_massiv_tetr(int i, int k, u_int64_t *prav_tetr, int l)
 {
-	char		*s;
+
+}
+
+void		naris(u_int64_t llu)
+{
 	int			i;
 	int			k;
 	u_int64_t	imax;
@@ -103,7 +108,6 @@ void					naris(u_int64_t llu)
 		else
 			printf(".");
 		i++;
-		s++;
 		if ((i + 1) % 8 == 1)
 			printf("\n");
 	}

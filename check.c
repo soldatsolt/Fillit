@@ -6,13 +6,13 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/04 17:52:31 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 01:46:38 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int					kolvoreshvstroke(char *s)
+int	kolvoreshvstroke(char *s)
 {
 	int		i;
 	int		n;
@@ -30,7 +30,7 @@ int					kolvoreshvstroke(char *s)
 	return (n);
 }
 
-int					tetr_check(unsigned short int *u, int l, int k)
+int	tetr_check(unsigned short int *u, int l, int k)
 {
 	int		i;
 
@@ -58,7 +58,7 @@ int					tetr_check(unsigned short int *u, int l, int k)
 	return ((k) ? 1 : 0);
 }
 
-int					check6or8(unsigned short int u, int l, int n)
+int	check6or8(unsigned short int u, int l, int n)
 {
 	int		i;
 
@@ -83,7 +83,7 @@ int					check6or8(unsigned short int u, int l, int n)
 	return (1);
 }
 
-int					dvizh_vverkh(unsigned short int *u, int i, int n)
+int	dvizh_vverkh(unsigned short int *u, int i, int n)
 {
 	while (i < 4)
 	{
@@ -103,7 +103,7 @@ int					dvizh_vverkh(unsigned short int *u, int i, int n)
 	return ((n > 2) ? 0 : 1);
 }
 
-int					dvizh_vlevo(unsigned short int *u, int i, int n)
+int	dvizh_vlevo(unsigned short int *u, int i, int n)
 {
 	while (i < 16)
 	{
