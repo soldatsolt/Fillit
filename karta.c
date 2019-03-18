@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 00:07:00 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 00:08:44 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	unsigned long long int	llu;
 	int						i;
 	unsigned long long int	llut;
+	u_int64_t				o;
 
+	o = 1;
 	llu = 0;
 	i = 0;
 	llut = u;
@@ -69,15 +71,15 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 		if ((((1 << 15) >> i) & llut) && (i < 4))
 		{
 			printf("\n __%i__ \n ", i);
-			llu |= (unsigned long long int)(((unsigned long long int)1 << (unsigned long long int)(63 - i))); // скорее всего, ошибка тут
+			llu |= ((o << (63 - i))); // скорее всего, ошибка тут
 		}
 			// нужно прибавлять только одну единичку, а не целое число ллут << 48
-		else if ((((1 << 15) >> i) & llut) && (i >= 4 && i < 8))
-			llu |= (unsigned long long int)((1 << (59 - i)));
-		else if ((((1 << 15) >> i) & llut) && (i >= 8 && i < 12))
-			llu = (unsigned long long int)llu + (unsigned long long int)((1 << (55 - i)));
-		else if ((((1 << 15) >> i) & llut) && (i >= 12 && i < 16))
-			llu = (unsigned long long int)llu + (unsigned long long int)((1 << (51 - i)));
+		else if ((((o << 15) >> i) & llut) && (i >= 4 && i < 8))
+			llu |= ((o << (59 - i)));
+		else if ((((o << 15) >> i) & llut) && (i >= 8 && i < 12))
+			llu = llu + ((o << (55 - i)));
+		else if ((((o << 15) >> i) & llut) && (i >= 12 && i < 16))
+			llu = llu + ((o << (51 - i)));
 		i++;
 	}
 	i = 0;
@@ -87,8 +89,6 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 		mapa = mapa + (llu << (0 - i));
 	return (mapa);
 }
-
-// 9223372036854775807
 
 void					naris(unsigned long long int llu)
 {
