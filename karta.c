@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/18 23:53:13 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 00:07:00 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	llu = 0;
 	i = 0;
 	llut = u;
+	printf("\n\n\n%i\n\n\n", u);
 	imax = 1;
 	imax = imax << 63;
 	while (i < 16) // где-то тут нужно посмотреть
@@ -68,15 +69,15 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 		if ((((1 << 15) >> i) & llut) && (i < 4))
 		{
 			printf("\n __%i__ \n ", i);
-			llu |= ((1 << (63 - i))); // скорее всего, ошибка тут
+			llu |= (unsigned long long int)(((unsigned long long int)1 << (unsigned long long int)(63 - i))); // скорее всего, ошибка тут
 		}
 			// нужно прибавлять только одну единичку, а не целое число ллут << 48
 		else if ((((1 << 15) >> i) & llut) && (i >= 4 && i < 8))
-			llu |= ((1 << (59 - i)));
+			llu |= (unsigned long long int)((1 << (59 - i)));
 		else if ((((1 << 15) >> i) & llut) && (i >= 8 && i < 12))
-			llu = llu + ((1 << (55 - i)));
+			llu = (unsigned long long int)llu + (unsigned long long int)((1 << (55 - i)));
 		else if ((((1 << 15) >> i) & llut) && (i >= 12 && i < 16))
-			llu = llu + ((1 << (51 - i)));
+			llu = (unsigned long long int)llu + (unsigned long long int)((1 << (51 - i)));
 		i++;
 	}
 	i = 0;
@@ -86,6 +87,8 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 		mapa = mapa + (llu << (0 - i));
 	return (mapa);
 }
+
+// 9223372036854775807
 
 void					naris(unsigned long long int llu)
 {
