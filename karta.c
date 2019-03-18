@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 01:55:36 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 02:09:02 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ u_int64_t	karta(unsigned short int *u, int l)
 	}
 	printf("><%llu><\n", mapa);
 	naris(mapa);
-	naris_massiv_tetr(0, 0, prav_tetr, l);
+	naris_mass(mapa, 0, prav_tetr, l);
 	return (mapa);
 }
 
@@ -86,9 +86,29 @@ u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu)
 	return (mapa);
 }
 
-void		naris_massiv_tetr(int i, int k, u_int64_t *prav_tetr, int l)
+void		naris_mass(u_int64_t mapa, int k, u_int64_t *prav_tetr, int l)
 {
+	int 		i;
+	u_int64_t	imax;
 
+	i = 0;
+	imax = 1;
+	imax = imax << 63;
+	while (i < 64)
+	{
+		if (((imax >> i) & mapa))
+		{
+			while (!((imax >> i) & prav_tetr[k]))
+				k++;
+			printf("%c", (65 + k));
+			k = 0;
+		}
+		else
+			printf(".");
+		i++;
+		if ((i + 1) % 8 == 1)
+			printf("\n");
+	}
 }
 
 void		naris(u_int64_t llu)
