@@ -6,17 +6,17 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 00:44:24 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 01:32:29 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int					main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	int						o;
-	unsigned short int		*u;
-	unsigned long long int mapa;
+	int			o;
+	u_int16_t	*u;
+	u_int64_t	mapa;
 
 	if (argc > 1)
 		o = open(argv[1], O_RDONLY);
@@ -31,7 +31,7 @@ int					main(int argc, char **argv)
 	return (0);
 }
 
-unsigned short int	*kolvoresh(int o, int i, int n, unsigned short int *u)
+u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u)
 {
 	char	*str;
 	char	*karta;
@@ -58,13 +58,13 @@ unsigned short int	*kolvoresh(int o, int i, int n, unsigned short int *u)
 	return (((i == 4) && u) ? u : NULL);
 }
 
-unsigned short int	*tetramina(char *s, int k, int sym, int l)
+u_int16_t	*tetramina(char *s, int k, int sym, int l)
 {
-	int					i;
-	unsigned short int	*u;
+	int			i;
+	u_int16_t	*u;
 
 	g_len = l / 16;
-	u = (unsigned short int *)malloc(sizeof(*u) * (l / 16));
+	u = (u_int16_t *)malloc(sizeof(*u) * (l / 16));
 	ft_bzero(u, (l / 8));
 	i = 0;
 	while (k < (l / 16))

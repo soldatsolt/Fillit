@@ -6,18 +6,21 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 01:03:23 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 01:30:31 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-unsigned long long int	karta(unsigned short int *u, int l)
+u_int64_t	karta(unsigned short int *u, int l)
 {
-	int						min_size;
-	unsigned long long int	mapa;
-	int						k;
+	int			min_size;
+	u_int64_t	mapa;
+	int			k;
+	u_int64_t	*prav_tetr;
 
+	prav_tetr = (u_int64_t *)malloc(sizeof(u_int64_t) * l);
+	bzero(prav_tetr, l * 8);
 	k = 0;
 	mapa = 0;
 	min_size = min_map_size(l * 4);
@@ -46,13 +49,12 @@ int						min_map_size(int l)
 	return (n);
 }
 
-unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
-	int mapa, int min_size)
+u_int64_t	mod_karta(unsigned short int u, u_int64_t mapa, int min_size)
 {
-	unsigned long long int	llu;
-	int						i;
-	unsigned long long int	llut;
-	u_int64_t				o;
+	u_int64_t	llu;
+	int			i;
+	u_int64_t	llut;
+	u_int64_t	o;
 
 	o = 1;
 	llu = 0;
@@ -73,8 +75,7 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	return (zapoln_kartu(mapa, 0, llu));
 }
 
-unsigned long long int	zapoln_kartu(unsigned long long int mapa, \
-	int i, unsigned long long int llu)
+u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu)
 {
 	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))))
 		i++;
@@ -83,12 +84,12 @@ unsigned long long int	zapoln_kartu(unsigned long long int mapa, \
 	return (mapa);
 }
 
-void					naris(unsigned long long int llu)
+void					naris(u_int64_t llu)
 {
-	char					*s;
-	int						i;
-	int						k;
-	unsigned long long int	imax;
+	char		*s;
+	int			i;
+	int			k;
+	u_int64_t	imax;
 
 	imax = 1;
 	imax = imax << 63;
