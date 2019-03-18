@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 01:01:59 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 01:02:16 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ unsigned long long int	zapoln_kartu(unsigned long long int mapa, \
 	int i, unsigned long long int llu)
 {
 	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))))
-		i+= 8;
+		i++;
 		mapa |= (llu >> i);
 	naris(mapa);
 	return (mapa);
