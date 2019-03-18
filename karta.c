@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 02:09:02 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 02:37:55 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t mapa, int min_size)
 			llu = llu + ((o << (51 - i)));
 		i++;
 	}
-	return (zapoln_kartu(mapa, 0, llu));
+	return (zapoln_kartu(mapa, 0, llu, min_size));
 }
 
-u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu)
+u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu, int min_size)
 {
 	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))))
 		i++;
@@ -88,7 +88,7 @@ u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu)
 
 void		naris_mass(u_int64_t mapa, int k, u_int64_t *prav_tetr, int l)
 {
-	int 		i;
+	int			i;
 	u_int64_t	imax;
 
 	i = 0;
