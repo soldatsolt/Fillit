@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/15 19:49:28 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 01:00:13 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int						min_map_size(int l);
 unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	int mapa, int min_size);
 void					naris(unsigned long long int llu);
+unsigned long long int	zapoln_kartu(unsigned long long int mapa, \
+	int i, unsigned long long int llu);
 
 #endif
