@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 01:30:31 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 01:44:50 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ u_int64_t	karta(unsigned short int *u, int l)
 	min_size = min_map_size(l * 4);
 	while (k < l)
 	{
-		mapa = mod_karta(u[k], mapa, min_size);
+		prav_tetr[k] = mod_karta(u[k], mapa, min_size);
+		mapa |= prav_tetr[k];
 		k++;
 	}
 	printf("><%llu><\n", mapa);
