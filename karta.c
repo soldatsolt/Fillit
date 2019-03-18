@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 00:08:44 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 00:54:36 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned long long int	karta(unsigned short int *u, int l)
 	min_size = min_map_size(l * 4);
 	while (k < l)
 	{
-		mapa = mod_karta(u[k], mapa, min_size);//tyt poka 64 bita vseg0
+		mapa = mod_karta(u[k], mapa, min_size);
 		k++;
 	}
 	printf("><%llu><\n", mapa);
@@ -59,21 +59,12 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 	llu = 0;
 	i = 0;
 	llut = u;
-	printf("\n\n\n%i\n\n\n", u);
 	imax = 1;
 	imax = imax << 63;
-	while (i < 16) // где-то тут нужно посмотреть
+	while (i < 16)
 	{
-		printf("при i = %i\n", i - 1);
-		naris(llu);
-		printf("\n+++%llu+++\n", llu);
-		printf("____NEW CYCLE____\n");
 		if ((((1 << 15) >> i) & llut) && (i < 4))
-		{
-			printf("\n __%i__ \n ", i);
-			llu |= ((o << (63 - i))); // скорее всего, ошибка тут
-		}
-			// нужно прибавлять только одну единичку, а не целое число ллут << 48
+			llu |= ((o << (63 - i)));
 		else if ((((o << 15) >> i) & llut) && (i >= 4 && i < 8))
 			llu |= ((o << (59 - i)));
 		else if ((((o << 15) >> i) & llut) && (i >= 8 && i < 12))
@@ -82,11 +73,12 @@ unsigned long long int	mod_karta(unsigned short int u, unsigned long long\
 			llu = llu + ((o << (51 - i)));
 		i++;
 	}
+	printf(">|||<%llu>|||<\n", llu);
+	naris(llu);
 	i = 0;
-	// printf("><%llu><\n", imax);
-	while (((mapa ^ llu << (0 - i)) != ((mapa | llu << (0 - i)))))
+	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))))
 		i++;
-		mapa = mapa + (llu << (0 - i));
+		mapa |= (llu >> i);
 	return (mapa);
 }
 
