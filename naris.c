@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 01:49:07 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 02:00:02 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@ void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int l)
 		if (max != 8 && (i == max || ((((i % 8) % max) == 0) && (i > 8) && (i % 8))))
 		{
 			i = i + 8 - max;
-			printf("\n");
+			write(1, "\n", 1);
 			continue ;
 		}
 		if (((imax >> i) & mapa))
 		{
 			while (!((imax >> i) & tetr[k]))
 				k++;
-			printf("%c", (65 + k));
+			ft_putchar(65 + k);
 			k = 0;
 		}
 		else
-			printf(".");
+			write(1, ".", 1);
 		i++;
 		if ((i + 1) % 8 == 1)
-			printf("\n");
+			write(1, "\n", 1);
 	}
 }
 
@@ -111,5 +111,5 @@ int			prav_razm(u_int64_t mapa)
 		hzi++;
 	hzi = 8 - hzi;
 	hzj = 8 - hzj;
-	return((hzj > hzi) ? hzj : hzi);
+	return ((hzj > hzi) ? hzj : hzi);
 }
