@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 05:43:21 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 23:58:26 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ u_int64_t	karta(unsigned short int *u, int l)
 	min_size = min_map_size(l * 4);
 	while (k < l)
 	{
-		tetr[k] = mod_karta(u[k], tetr, min_size);
+		tetr[k] = mod_karta(u[k], tetr, min_size, k);
 		summ |= tetr[k];
 		k++;
 	}
@@ -51,7 +51,7 @@ int			min_map_size(int l)
 	return (n);
 }
 
-u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int min_size)
+u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int min_size, int k)
 {
 	u_int64_t	llu;
 	int			i;
@@ -74,16 +74,19 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int min_size)
 			llu = llu + ((o << (51 - i)));
 		i++;
 	}
-	return (zapoln_kartu(tetr, 0, llu, min_size));
+	tetr[k] = llu;
+	return (zapoln_kartu(tetr, k, llu, min_size));
 }
 
-u_int64_t	zapoln_kartu(u_int64_t *tetr, int i, u_int64_t llu, int min_size)
+u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 {
 	u_int64_t gran;
 	u_int64_t tmp;
 	u_int64_t mapa;
+	u_int64_t i;
 
-	mapa = summis(tetr, (u_int64_t)0);
+	i = 0;
+	mapa = summis(tetr, k, (u_int64_t)0);
 	gran = ((u_int64_t)255 << ((7 - min_size) * 8));
 	gran |= ((u_int64_t)72340172838076673 << ((7 - min_size)));
 	naris(gran);
@@ -165,12 +168,12 @@ void		naris(u_int64_t llu)
 	printf("\n");
 }
 
-u_int64_t	summis(u_int64_t *tetr, u_int64_t summ)
+u_int64_t	summis(u_int64_t *tetr, int k, u_int64_t summ)
 {
 	int i;
 
 	i = 0;
-	while (tetr[i])
+	while (i < k)
 	{
 		summ = summ + tetr[i];
 		i++;
