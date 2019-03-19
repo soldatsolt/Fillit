@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 01:42:40 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 01:46:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int l)
 	imax = imax << 63;
 	while (i < max * 8)
 	{
-		if (i == max || ((((i % 8) % 3) == 0) && (i > 8) && (i % 8)))
+		if (i == max || ((((i % 8) % max) == 0) && (i > 8) && (i % 8)))
 		{
 			i = i + 8 - max;
 			printf("\n");
