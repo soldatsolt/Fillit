@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 00:53:01 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 01:09:19 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int l)
 		if ((i + 1) % 8 == 1)
 			printf("\n");
 	}
+	printf("@%i\n", prav_razm(mapa));
 }
 
 void		naris(u_int64_t llu)
@@ -88,4 +89,20 @@ u_int64_t	uvel_gran(u_int64_t gran)
 	gran = ((u_int64_t)255 << ((7 - i) * 8));
 	gran |= ((u_int64_t)72340172838076673 << ((7 - i)));
 	return (gran);
+}
+
+int			prav_razm(u_int64_t mapa)
+{
+	int			hzi;
+	int			hzj;
+
+	hzi = 0;
+	hzj = 0;
+	while (!((((u_int64_t)255 << (8 * hzj))) & (mapa)))
+		hzj++;
+	while (!((((u_int64_t)72340172838076673 << (hzi))) & (mapa)))
+		hzi++;
+	hzi = 8 - hzi;
+	hzj = 8 - hzj;
+	return((hzj > hzi) ? hzj : hzi);
 }
