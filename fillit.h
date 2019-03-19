@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 23:39:33 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 00:19:49 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int l);
 u_int64_t	dvig_tetr_vgran(u_int64_t mapa, u_int64_t llu, int min_size, \
 u_int64_t gran);
 u_int64_t	summis(u_int64_t *tetr, int k, u_int64_t summ);
+u_int64_t	uvel_gran(u_int64_t gran);
 
 #endif

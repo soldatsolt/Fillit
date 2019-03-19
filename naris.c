@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 00:11:34 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 00:53:01 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,21 @@ u_int64_t	summis(u_int64_t *tetr, int k, u_int64_t summ)
 		i++;
 	}
 	return (summ);
+}
+
+u_int64_t	uvel_gran(u_int64_t gran)
+{
+	u_int64_t	i;
+	u_int64_t	imax;
+
+	imax = 1;
+	imax = imax << 63;
+	i = 0;
+	while (!((imax >> i) & (gran)))
+		i++;
+	i++;
+	gran = 0;
+	gran = ((u_int64_t)255 << ((7 - i) * 8));
+	gran |= ((u_int64_t)72340172838076673 << ((7 - i)));
+	return (gran);
 }
