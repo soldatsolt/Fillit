@@ -6,7 +6,7 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	gcc fillit.c check.c karta.c ./libft/libft.a -o $(NAME)
+	gcc naris.c fillit.c check.c karta.c ./libft/libft.a -o $(NAME)
 
 g:
 	gcc -g fillit.c check.c ./libft/libft.a
