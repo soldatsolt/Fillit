@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 04:19:03 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 05:43:21 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 u_int64_t	karta(unsigned short int *u, int l)
 {
 	int			min_size;
-	u_int64_t	mapa;
 	int			k;
-	u_int64_t	*prav_tetr;
+	u_int64_t	*tetr;
+	u_int64_t	summ;
 
-	prav_tetr = (u_int64_t *)malloc(sizeof(u_int64_t) * l);
-	bzero(prav_tetr, l * 8);
+	summ = 0;
+	tetr = (u_int64_t *)malloc(sizeof(u_int64_t) * l);
+	bzero(tetr, l * 8);
 	k = 0;
-	mapa = 0;
 	min_size = min_map_size(l * 4);
 	while (k < l)
 	{
-		prav_tetr[k] = mod_karta(u[k], mapa, min_size);
-		mapa |= prav_tetr[k];
+		tetr[k] = mod_karta(u[k], tetr, min_size);
+		summ |= tetr[k];
 		k++;
 	}
-	printf("><%llu><\n", mapa);
-	naris(mapa);
-	naris_mass(mapa, 0, prav_tetr, l);
-	return (mapa);
+	printf("><%llu><\n", summ);
+	naris(summ);
+	naris_mass(summ, 0, tetr, l);
+	return (summ);
 }
 
 int			min_map_size(int l)
@@ -51,7 +51,7 @@ int			min_map_size(int l)
 	return (n);
 }
 
-u_int64_t	mod_karta(unsigned short int u, u_int64_t mapa, int min_size)
+u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int min_size)
 {
 	u_int64_t	llu;
 	int			i;
@@ -74,14 +74,16 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t mapa, int min_size)
 			llu = llu + ((o << (51 - i)));
 		i++;
 	}
-	return (zapoln_kartu(mapa, 0, llu, min_size));
+	return (zapoln_kartu(tetr, 0, llu, min_size));
 }
 
-u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu, int min_size)
+u_int64_t	zapoln_kartu(u_int64_t *tetr, int i, u_int64_t llu, int min_size)
 {
 	u_int64_t gran;
 	u_int64_t tmp;
+	u_int64_t mapa;
 
+	mapa = summis(tetr, (u_int64_t)0);
 	gran = ((u_int64_t)255 << ((7 - min_size) * 8));
 	gran |= ((u_int64_t)72340172838076673 << ((7 - min_size)));
 	naris(gran);
@@ -115,7 +117,7 @@ u_int64_t gran)
 	return (llu);
 }
 
-void		naris_mass(u_int64_t mapa, int k, u_int64_t *prav_tetr, int l)
+void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int l)
 {
 	int			i;
 	u_int64_t	imax;
@@ -127,7 +129,7 @@ void		naris_mass(u_int64_t mapa, int k, u_int64_t *prav_tetr, int l)
 	{
 		if (((imax >> i) & mapa))
 		{
-			while (!((imax >> i) & prav_tetr[k]))
+			while (!((imax >> i) & tetr[k]))
 				k++;
 			printf("%c", (65 + k));
 			k = 0;
@@ -161,4 +163,17 @@ void		naris(u_int64_t llu)
 			printf("\n");
 	}
 	printf("\n");
+}
+
+u_int64_t	summis(u_int64_t *tetr, u_int64_t summ)
+{
+	int i;
+
+	i = 0;
+	while (tetr[i])
+	{
+		summ = summ + tetr[i];
+		i++;
+	}
+	return (summ);
 }
