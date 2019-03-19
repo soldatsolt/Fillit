@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 03:36:32 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 04:19:03 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,39 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t mapa, int min_size)
 u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu, int min_size)
 {
 	u_int64_t gran;
+	u_int64_t tmp;
 
 	gran = ((u_int64_t)255 << ((7 - min_size) * 8));
 	gran |= ((u_int64_t)72340172838076673 << ((7 - min_size)));
 	naris(gran);
+	tmp = llu;
 	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))))
 	{
-		if ((gran ^ (llu >> i)) != ((gran | (llu >> i))))
+		// if ((gran ^ (llu >> i)) != ((gran | (llu >> i))))
+		// {
+		// 	llu = dvig_tetr_vgran(mapa, llu, min_size, gran);
+		// 	if (llu == gran)
 
 		i++;
 	}
 	mapa |= (llu >> i);
 	naris(mapa);
 	return (mapa);
+}
+
+u_int64_t	dvig_tetr_vgran(u_int64_t mapa, u_int64_t llu, int min_size, \
+u_int64_t gran)
+{
+	int i;
+
+	i = 0;
+	while (i < min_size * 8)
+	{
+		if ((gran ^ (llu >> i)) == ((gran | (llu >> i))))
+			return (llu >> i);
+		i++;
+	}
+	return (llu);
 }
 
 void		naris_mass(u_int64_t mapa, int k, u_int64_t *prav_tetr, int l)

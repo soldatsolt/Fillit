@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 02:36:55 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/19 04:08:12 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ u_int64_t	mod_karta(u_int16_t u, u_int64_t mapa, int min_size);
 void		naris(u_int64_t llu);
 u_int64_t	zapoln_kartu(u_int64_t mapa, int i, u_int64_t llu, int min_size);
 void		naris_mass(u_int64_t mapa, int k, u_int64_t *prav_tetr, int l);
+u_int64_t	dvig_tetr_vgran(u_int64_t mapa, u_int64_t llu, int min_size, \
+u_int64_t gran);
 
 #endif
