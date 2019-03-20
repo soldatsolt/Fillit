@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 03:15:52 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/21 00:42:17 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/21 02:42:13 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,5 @@ u_int64_t	makegran(u_int64_t gran, int size)
 			gran |= imax >> i;
 		i++;
 	}
-	naris(gran);
 	return (gran);
 }
