@@ -6,13 +6,15 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 03:21:56 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 03:29:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "./libft/libft.h"
+# define CH_8_6 (check6or8big((llu >> i), 0, 0, min_size))
+
 int			g_len;
 int			kolvoreshvstroke(char *s);
 u_int16_t	*tetramina(char *s, int k, int sym, int l);

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 03:25:44 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 03:31:45 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 	gran = ((u_int64_t)255 << ((7 - min_size) * 8));
 	gran |= ((u_int64_t)72340172838076673 << ((7 - min_size)));
 	tmp = llu;
-	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))))
+	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))) || !(CH_8_6))
 	{
 		// if ((gran ^ (llu >> i)) != ((gran | (llu >> i))))
 		// {
@@ -100,7 +100,7 @@ u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 	}
 	mapa |= (llu >> i);
 	naris(llu >> i);
-	if (!(check6or8big((llu >> i), 0, 0, min_size)))
+	if (!CH_8_6)
 		printf("@@@@@@@@@\n");
 	return (mapa);
 }
