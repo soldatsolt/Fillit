@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/21 00:37:31 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/21 02:06:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int i)
 	ki = max;
 	while (i < max * 8)
 	{
-		if (i == ki)
+		if (i == ki && max != 8)
 		{
 			asdfefe(&i, max, &ki);
 			continue ;
@@ -36,7 +36,7 @@ void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int i)
 		else
 			write(1, ".", 1);
 		i++;
-		if ((i + 1) % 8 == 1)
+		if ((i) % 8 == 0)
 			write(1, "\n", 1);
 	}
 }

@@ -9,7 +9,7 @@ $(NAME):
 	gcc $(SRCS) -o $(NAME)
 
 g:
-	gcc -g fillit.c check.c ./libft/libft.a
+	gcc -g $(SRCS)
 
 clean:
 	rm -f $(NAME) 
