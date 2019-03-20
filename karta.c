@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/21 02:42:39 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/21 02:58:39 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 	while (tetr[k] & mapa || !(CH_8_6))
 	{
 		tetr[k] = tetr[k] >> 1;
-		if ((tetr[k] | gran) != (tetr[k] & gran))
+		if ((tetr[k] | gran) != (gran))
 		{
 			tetr[k] = dvig_tetr_vgran(tetr, k, min_size, gran);
 		}
@@ -118,11 +118,12 @@ u_int64_t gran)
 	int i;
 
 	i = 0;
-	while (i < 63) // ОБРАТИ ВНИМАЕНИЕ ЭТО БРЕД
+	while (i < min_size * 8)
 	{
-		tetr[k] = tetr[k] >> 1;
-		if ((tetr[k] | gran) == (tetr[k] & gran))
+		i++;
+		if (((tetr[k] >> i) | gran) == (gran))
 		{
+			tetr[k] = tetr[k] >> i;
 			return (tetr[k]);
 		}
 	}

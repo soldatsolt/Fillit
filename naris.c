@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/21 02:35:18 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/21 02:44:06 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ u_int64_t	uvel_gran(u_int64_t gran)
 	int			max;
 
 	gran = makegran(gran, (prav_razm(gran) + 1));
-	naris(gran);
 	return (gran);
 }
 
