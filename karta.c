@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 01:06:44 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 03:25:44 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ u_int64_t	karta(unsigned short int *u, int l)
 		k++;
 	}
 	printf("><%llu><\n", summ);
-	naris(summ);
 	naris_mass(summ, 0, tetr, l);
 	return (summ);
 }
@@ -100,6 +99,9 @@ u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 		i++;
 	}
 	mapa |= (llu >> i);
+	naris(llu >> i);
+	if (!(check6or8big((llu >> i), 0, 0, min_size)))
+		printf("@@@@@@@@@\n");
 	return (mapa);
 }
 
