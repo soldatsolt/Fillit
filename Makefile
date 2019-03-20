@@ -2,11 +2,11 @@ NAME = fillit
 MAKE = make
 override G += 
 FLAGS = -Wall -Wextra -Werror
-
+SRCS = normichno.c moding.c naris.c fillit.c check.c karta.c ./libft/libft.a
 all: $(NAME)
 
 $(NAME):
-	gcc moding.c naris.c fillit.c check.c karta.c ./libft/libft.a -o $(NAME)
+	gcc $(SRCS) -o $(NAME)
 
 g:
 	gcc -g fillit.c check.c ./libft/libft.a

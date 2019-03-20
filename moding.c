@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 03:15:52 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 05:26:03 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/21 00:42:17 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,32 @@ int	check6or8big(u_int64_t u, int l, int n, int size)
 	}
 	if (!(n == 8 || n == 6))
 		return (0);
-
 	return (1);
+}
+
+u_int64_t	makegran(u_int64_t gran, int size)
+{
+	int			i;
+	u_int64_t	imax;
+	int			k;
+
+	ft_bzero(&gran, 8);
+	imax = 1;
+	imax = imax << 63;
+	i = 0;
+	k = size;
+	while (i < size * 8)
+	{
+		if (i == k)
+		{
+			i = i + 8 - size;
+			k = k + 8;
+			continue ;
+		}
+		else
+			gran |= imax >> i;
+		i++;
+	}
+	naris(gran);
+	return (gran);
 }
