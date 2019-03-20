@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 02:00:02 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 05:13:03 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void		naris(u_int64_t llu)
 	while (i < 64)
 	{
 		if (((imax >> i) & llu))
-			printf("#");
+			write(1, "#", 1);
 		else
-			printf(".");
+			write(1, ".", 1);
 		i++;
 		if ((i + 1) % 8 == 1)
-			printf("\n");
+			write(1, "\n", 1);
 	}
-	printf("\n");
+	write(1, "\n", 1);
 }
 
 u_int64_t	summis(u_int64_t *tetr, int k, u_int64_t summ)

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/20 04:37:28 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/20 05:19:40 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ u_int64_t	karta(unsigned short int *u, int l)
 		summ |= tetr[k];
 		k++;
 	}
-	printf("><%llu><\n", summ);
 	naris_mass(summ, 0, tetr, l);
 	return (summ);
 }
@@ -89,19 +88,16 @@ u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 	gran = ((u_int64_t)255 << ((7 - min_size) * 8));
 	gran |= ((u_int64_t)72340172838076673 << ((7 - min_size)));
 	tmp = llu;
-	while ((mapa ^ (llu >> i)) != ((mapa | (llu >> i))) || !(CH_8_6))
+	while ((mapa & (tetr[k] >> i)) || !(CH_8_6))
 	{
 		i++;
-		if (gran & (llu >> i))
+		if (gran & (tetr[k] >> i))
 		{
-			naris(gran);
-			naris((llu >> i));
-			llu = dvig_tetr_vgran(mapa, llu >> i, min_size, gran);
-			llu = llu << i;
-			// if (llu == gran)
+			tetr[k] = dvig_tetr_vgran(mapa, (tetr[k] >> i), min_size, gran);
+			tetr[k] = tetr[k] << i;
 		}
 	}
-	mapa |= (llu >> i);
+	mapa |= (tetr[k] >> i);
 	return (mapa);
 }
 
@@ -113,13 +109,12 @@ u_int64_t gran)
 	i = 8 - min_size;
 	while (i < min_size * 8)
 	{
-		if (!(gran & (llu >> i)) && (CH_8_6))
+		if (!(gran & (llu >> i)))
 		{
-			// naris((llu >> i));
 			return (llu >> i);
 		}
 		ft_putstr("\n@@@@\n\n");
 		i++;
 	}
-	return (llu);
+	return (llu >> i);
 }
