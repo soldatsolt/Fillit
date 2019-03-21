@@ -6,14 +6,14 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/21 00:36:31 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/21 03:00:25 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "./libft/libft.h"
-# define CH_8_6 (check6or8big((llu >> i), 0, 0, min_size))
+# define CH_8_6 (check6or8big((tetr[k] >> i), 0, 0, min_size))
 
 int			g_len;
 int			kolvoreshvstroke(char *s);
