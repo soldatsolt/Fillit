@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/22 22:59:00 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/22 23:11:30 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 u_int64_t	karta(unsigned short int *u, int l)
 {
-	int			min_size;
 	int			k;
 	u_int64_t	*tetr;
 	u_int64_t	summ;
@@ -23,10 +22,10 @@ u_int64_t	karta(unsigned short int *u, int l)
 	tetr = (u_int64_t *)malloc(sizeof(u_int64_t) * l);
 	ft_bzero(tetr, l * 8);
 	k = 0;
-	min_size = min_map_size(l * 4);
+	g_size = min_map_size(l * 4);
 	while (k < l)
 	{
-		tetr[k] = mod_karta(u[k], tetr, min_size, k);
+		tetr[k] = mod_karta(u[k], tetr, g_size, k);
 		summ |= tetr[k];
 		k++;
 	}
@@ -49,7 +48,7 @@ int			min_map_size(int l)
 	return (n);
 }
 
-u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int min_size, int k)
+u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int g_size, int k)
 {
 	u_int64_t	llu;
 	int			i;
@@ -73,7 +72,7 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int min_size, int k)
 		i++;
 	}
 	tetr[k] = llu;
-	return (dvig_tetr_vgran(tetr, k, min_size, 0)); // ТУТ МИНСАЙЗ = 7
+	return (dvig_tetr_vgran(tetr, k, g_size, tetr[k])); // ТУТ МИНСАЙЗ = 7
 }
 
 u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
@@ -103,32 +102,36 @@ u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 	return (mapa);
 }
 
-u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, int min_size, \
-u_int64_t gran)
+u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, int g_size, \
+u_int64_t tetrik)
 {
 	int			i;
 	u_int64_t	mapa;
+	u_int64_t	gran;
 
 	i = 0;
 	mapa = summis(tetr, k, (u_int64_t)0);
-	gran = makegran(gran, min_size);
-	while (i < min_size * 8)
+	gran = makegran(gran, g_size);
+	tetr[k] = tetrik;
+	while (i < g_size * 8)
 	{
 		naris(tetr[k] >> i);
-		if (((tetr[k] >> i) | gran) == (gran) && !(mapa & tetr[k] >> i))
+		if (((tetr[k] >> i) | gran) == (gran) && !(mapa & tetr[k] >> i)/* && CH_8_6*/)
 		{
 			tetr[k] = tetr[k] >> i;
 			return (tetr[k]);
 		}
 		i++;
 	}
-	if (i == min_size * 8 && k == 0)
+	if (i == g_size * 8 && k == 0)
 	{
-		return (dvig_tetr_vgran(tetr, k, min_size + 1, 0));
+		ft_putstr("1st\n");
+		return (dvig_tetr_vgran(tetr, k, g_size + 1, (tetr[k] >> 1)));
 	}
-	if (i == min_size * 8)
+	if (i == g_size * 8)
 	{
-		return (dvig_tetr_vgran(tetr, k - 1, min_size, 0));
+		ft_putstr("2nd\n");
+		return (dvig_tetr_vgran(tetr, k - 1, g_size, tetr[k]));
 	}
 	mapa |= (tetr[k]);
 	return (mapa);
