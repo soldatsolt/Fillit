@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/22 23:09:36 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 01:50:40 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ int			dvizh_vlevo(u_int16_t *u, int i, int n);
 u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u);
 u_int64_t	karta(u_int16_t *u, int l);
 int			min_map_size(int l);
-u_int64_t	mod_karta(u_int16_t u, u_int64_t *tetr, int min_size, int k);
+u_int64_t	mod_karta(u_int16_t u, u_int64_t *tetr, int k);
 void		naris(u_int64_t llu);
-u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size);
+u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu);
 void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int i);
-u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, int min_size, \
-u_int64_t tetrik);
+u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik);
 u_int64_t	summis(u_int64_t *tetr, int k, u_int64_t summ);
 u_int64_t	uvel_gran(u_int64_t gran);
 int			prav_razm(u_int64_t mapa);
