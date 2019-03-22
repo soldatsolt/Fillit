@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/19 01:32:29 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/21 06:58:31 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int			main(int argc, char **argv)
 
 	if (argc > 1)
 		o = open(argv[1], O_RDONLY);
+	if (read(o, NULL, 0) < 0)
+	{
+		write(1, "error\n", 6);
+		return (0);
+	}
 	u = kolvoresh(o, 0, 0, NULL);
 	close(o);
 	if (u)

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/21 03:17:39 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/22 22:59:00 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int min_size, int k)
 		i++;
 	}
 	tetr[k] = llu;
-	return (zapoln_kartu(tetr, k, llu, min_size));
+	return (dvig_tetr_vgran(tetr, k, min_size, 0)); // ТУТ МИНСАЙЗ = 7
 }
 
 u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
@@ -85,27 +85,18 @@ u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 
 	i = 0;
 	mapa = summis(tetr, k, (u_int64_t)0);
-	// gran = ((u_int64_t)255 << ((7 - min_size) * 8));
-	// gran |= ((u_int64_t)72340172838076673 << ((7 - min_size)));
 	gran = makegran(gran, min_size);
-	// tmp = llu;
-	// while ((mapa & (tetr[k] >> i)) || !(CH_8_6))
-	// {
-	// 	i++;
-	// 	if (gran & (tetr[k] >> i))
-	// 	{
-	// 		tetr[k] = dvig_tetr_vgran(i, (tetr[k]), min_size, gran);
-	// 		// tetr[k] = tetr[k] << i;
-	// 	}
-	// }
-	// mapa |= (tetr[k] >> i);
-	// return (mapa);
 	while (tetr[k] & mapa || !(CH_8_6))
 	{
 		tetr[k] = tetr[k] >> 1;
 		if ((tetr[k] | gran) != (gran))
 		{
+			tmp = tetr[k];
 			tetr[k] = dvig_tetr_vgran(tetr, k, min_size, gran);
+			if (tetr[k] == tmp)
+			{
+				
+			}
 		}
 	}
 	mapa |= (tetr[k]);
@@ -115,17 +106,30 @@ u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu, int min_size)
 u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, int min_size, \
 u_int64_t gran)
 {
-	int i;
+	int			i;
+	u_int64_t	mapa;
 
 	i = 0;
+	mapa = summis(tetr, k, (u_int64_t)0);
+	gran = makegran(gran, min_size);
 	while (i < min_size * 8)
 	{
-		i++;
-		if (((tetr[k] >> i) | gran) == (gran))
+		naris(tetr[k] >> i);
+		if (((tetr[k] >> i) | gran) == (gran) && !(mapa & tetr[k] >> i))
 		{
 			tetr[k] = tetr[k] >> i;
 			return (tetr[k]);
 		}
+		i++;
 	}
-	return (tetr[k]);
+	if (i == min_size * 8 && k == 0)
+	{
+		return (dvig_tetr_vgran(tetr, k, min_size + 1, 0));
+	}
+	if (i == min_size * 8)
+	{
+		return (dvig_tetr_vgran(tetr, k - 1, min_size, 0));
+	}
+	mapa |= (tetr[k]);
+	return (mapa);
 }

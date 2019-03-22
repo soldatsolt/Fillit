@@ -6,13 +6,13 @@ SRCS = normichno.c moding.c naris.c fillit.c check.c karta.c ./libft/libft.a
 all: $(NAME)
 
 $(NAME):
-	gcc $(SRCS) -o $(NAME)
+	@gcc $(SRCS) -o $(NAME)
 
 g:
-	gcc -g $(SRCS)
+	@gcc -g $(SRCS)
 
 clean:
-	rm -f $(NAME) 
+	@rm -f $(NAME) 
 
 fclean: clean
 	rm -f a.out 
