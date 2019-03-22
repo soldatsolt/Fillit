@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/22 23:11:30 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/22 23:22:26 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ u_int64_t tetrik)
 		if (((tetr[k] >> i) | gran) == (gran) && !(mapa & tetr[k] >> i)/* && CH_8_6*/)
 		{
 			tetr[k] = tetr[k] >> i;
+			ft_putstr("VOSHLO\n");
 			return (tetr[k]);
 		}
 		i++;
@@ -131,8 +132,9 @@ u_int64_t tetrik)
 	if (i == g_size * 8)
 	{
 		ft_putstr("2nd\n");
-		return (dvig_tetr_vgran(tetr, k - 1, g_size, tetr[k]));
+		return (dvig_tetr_vgran(tetr, k - 1, g_size, tetr[k - 1]));
 	}
+	ft_putstr("_____________NO IF_____________\n");
 	mapa |= (tetr[k]);
 	return (mapa);
 }
