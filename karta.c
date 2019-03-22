@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 02:42:57 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 02:48:00 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	tetr[k] = tetrik;
 	while (i < g_size * 8)
 	{
+		narisgrantoo(tetr[k] >> i, gran);
 		// naris(tetr[k] >> i);
 		if (((tetr[k] >> i) | gran) == (gran) && !(mapa & tetr[k] >> i)/* && CH_8_6*/)
 		{

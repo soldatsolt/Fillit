@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 02:29:40 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 02:46:08 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ u_int64_t	makegran(u_int64_t gran, int size);
 void		ijsdijs(u_int64_t imax, u_int64_t *tetr, int k, int i);
 void		asdfefe(int *i, int max, int *ki);
 u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik);
+void		narisgrantoo(u_int64_t llu, u_int64_t gran);
 
 #endif
