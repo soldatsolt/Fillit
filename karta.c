@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 01:59:50 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 02:42:57 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,57 @@ u_int64_t	karta(unsigned short int *u, int l)
 
 	summ = 0;
 	tetr = (u_int64_t *)malloc(sizeof(u_int64_t) * l);
+	g_nach8 = (u_int64_t *)malloc(sizeof(u_int64_t) * l);
 	ft_bzero(tetr, l * 8);
 	k = 0;
 	g_size = min_map_size(l * 4);
 	while (k < l)
 	{
 		tetr[k] = mod_karta(u[k], tetr, k);
-		naris(tetr[k]);
+		// naris(tetr[k]);
 		k++;
 	}
-	// naris_mass(summ, 0, tetr, 0);
+	k = 0;
+	while (k < l)
+	{
+		g_nach8[k] = mod_karta(u[k], g_nach8, k);
+		// naris(g_nach8[k]);
+		k++;
+	}
+	tetr = makethis(tetr, l, 0, tetr[0]);
+	k = -1;
+	while (++k < l)
+		summ |= tetr[k];
+	naris_mass(summ, 0, tetr, 0);
 	summ = 1;
 	return (summ);
+}
+
+u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
+{
+	while (k < l)
+	{
+		// ft_putstr("K = ");
+		// ft_putnbr(k);
+		// ft_putchar('\n');
+		// ft_putstr("l = ");
+		// ft_putnbr(l);
+		// ft_putchar('\n');
+		tetr[k] = dvig_tetr_vgran(tetr, k, tetrik);
+		if (tetr[k] == 1)
+		{
+			ft_putstr("1st\n");
+			tetr = makethis(tetr, l, k - 1, tetr[k - 1] >> 1);
+		}
+		if (tetr[k] == 2)
+		{
+			ft_putstr("2nd\n");
+			g_size++;
+			tetr = makethis(g_nach8, l, 0, g_nach8[0]);
+		}
+		k++;
+	}
+	return (tetr);
 }
 
 u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
@@ -57,14 +96,14 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	}
 	if (i == g_size * 8 && k == 0)
 	{
-		ft_putstr("1st\n");
-		g_size++;
-		return (dvig_tetr_vgran(tetr, k, (tetr[k] >> 1)));
+		ft_putstr("2nd\n");
+		// g_size++;
+		return (2);
 	}
 	if (i == g_size * 8)
 	{
-		ft_putstr("2nd\n");
-		return (dvig_tetr_vgran(tetr, k - 1, tetr[k - 1]));
+		ft_putstr("1st\n");
+		return (1);
 	}
 	ft_putstr("_____________NO IF_____________\n");
 	mapa |= (tetr[k]);

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 01:50:40 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 02:29:40 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int			g_len;
 int			g_size;
+u_int64_t	*g_nach8;
 int			kolvoreshvstroke(char *s);
 u_int16_t	*tetramina(char *s, int k, int sym, int l);
 int			tetr_check(u_int16_t *u, int l, int k);
@@ -38,5 +39,6 @@ int			check6or8big(u_int64_t u, int l, int n, int size);
 u_int64_t	makegran(u_int64_t gran, int size);
 void		ijsdijs(u_int64_t imax, u_int64_t *tetr, int k, int i);
 void		asdfefe(int *i, int max, int *ki);
+u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik);
 
 #endif
