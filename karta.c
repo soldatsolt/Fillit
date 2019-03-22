@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/22 23:22:26 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 01:44:04 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ u_int64_t tetrik)
 	tetr[k] = tetrik;
 	while (i < g_size * 8)
 	{
-		naris(tetr[k] >> i);
+		// naris(tetr[k] >> i);
 		if (((tetr[k] >> i) | gran) == (gran) && !(mapa & tetr[k] >> i)/* && CH_8_6*/)
 		{
 			tetr[k] = tetr[k] >> i;
@@ -127,7 +127,8 @@ u_int64_t tetrik)
 	if (i == g_size * 8 && k == 0)
 	{
 		ft_putstr("1st\n");
-		return (dvig_tetr_vgran(tetr, k, g_size + 1, (tetr[k] >> 1)));
+		g_size++;
+		return (dvig_tetr_vgran(tetr, k, g_size, (tetr[k] >> 1)));
 	}
 	if (i == g_size * 8)
 	{
