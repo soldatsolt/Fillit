@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/21 06:58:31 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 10:51:54 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ int			main(int argc, char **argv)
 {
 	int			o;
 	u_int16_t	*u;
-	u_int64_t	mapa;
 
-	if (argc > 1)
+	if (argc == 2)
 		o = open(argv[1], O_RDONLY);
 	if (read(o, NULL, 0) < 0)
 	{
@@ -30,6 +29,8 @@ int			main(int argc, char **argv)
 	if (u)
 	{
 		karta(u, g_len);
+		free (u);
+		u = NULL;
 	}
 	else
 		write(1, "error\n", 6);
@@ -59,7 +60,7 @@ u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u)
 		karta = ft_strrejoin(karta, str);
 	}
 	u = tetramina(karta, 0, 0, ft_strlen(karta));
-	free(karta);
+	ft_strdel(&karta);
 	return (((i == 4) && u) ? u : NULL);
 }
 

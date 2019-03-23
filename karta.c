@@ -6,13 +6,13 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 06:43:13 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 11:16:02 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-u_int64_t	karta(unsigned short int *u, int l)
+void		karta(unsigned short int *u, int l)
 {
 	int			k;
 	u_int64_t	*tetr;
@@ -34,7 +34,6 @@ u_int64_t	karta(unsigned short int *u, int l)
 	while (++k < l)
 		summ |= tetr[k];
 	naris_mass(summ, 0, tetr, 0);
-	return (summ);
 }
 
 u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
@@ -65,7 +64,7 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	i = 0;
 	mapa = summis(tetr, k, (u_int64_t)0);
 	gran = makegran(gran, g_size);
-	while (i < g_size * 8)
+	while (i < 64)
 	{
 		if (((tetrik >> i) | gran) == (gran) && !(mapa & tetrik >> i) && CH_8_6)
 		{
@@ -74,9 +73,9 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 		}
 		i++;
 	}
-	if (i == g_size * 8 && k == 0)
+	if (i == 64 && k == 0)
 		return (2);
-	if (i == g_size * 8)
+	if (i == 64 * 8)
 		return (1);
 	mapa |= (tetrik);
 	return (mapa);

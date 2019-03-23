@@ -6,23 +6,25 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 03:15:52 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 06:50:35 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 09:34:11 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			check6or8big(u_int64_t u, int l, int n, int size)
+int			check6or8big(u_int64_t u, int l, int n)
 {
 	int			i;
 
-	l = size;
-	if (size == 8)
+	l = g_size;
+	if (g_size == 8)
 		return (checkif8(u, 0, 0));
 	i = -1;
-	while (++i < size * 8)
+	while (++i < g_size * 8)
 		if (((g_imax >> i) & u))
 		{
+			// ft_putnbr(g_size);
+			// putchar('\n');
 			if (((g_imax >> (i - 1)) & u) && ((i) % 8 != 0))
 				n++;
 			if (((g_imax >> (i + 1)) & u) && (i != l))
