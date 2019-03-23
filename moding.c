@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 03:15:52 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 05:05:01 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 05:34:03 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ int	check6or8big(u_int64_t u, int l, int n, int size)
 	l = size;
 	imax = 1;
 	imax = imax << 63;
+	if (size == 8)
+	{
+		return (checkif8(u, 0, 0, imax));
+	}
 	i = 0;
-	///* size != only 8 */size = 8;
 	while (i < 64)
 	{
 		if (((imax >> i) & u))
@@ -68,4 +71,26 @@ u_int64_t	makegran(u_int64_t gran, int size)
 		i++;
 	}
 	return (gran);
+}
+
+int			checkif8(u_int64_t u, int i, int n, u_int64_t imax)
+{
+	while (i < 64)
+	{
+		if (((imax >> i) & u))
+		{
+			if (((imax >> (i - 1)) & u) && ((i) % 8 != 0))
+				n++;
+			if (((imax >> (i + 1)) & u) && ((i + 1) % 8 != 0))
+				n++;
+			if (((imax >> (i - 8)) & u))
+				n++;
+			if (((imax >> (i + 8)) & u))
+				n++;
+		}
+		i++;
+	}
+	if (!(n == 8 || n == 6))
+		return (0);
+	return (1);
 }
