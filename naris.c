@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 02:45:33 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 06:48:30 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int i)
 {
-	u_int64_t	imax;
 	int			max;
 	int			ki;
 
 	max = prav_razm(mapa);
-	imax = 1;
-	imax = imax << 63;
 	ki = max;
 	while (i < max * 8)
 	{
@@ -29,9 +26,9 @@ void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int i)
 			asdfefe(&i, max, &ki);
 			continue ;
 		}
-		if (((imax >> i) & mapa))
+		if (((g_imax >> i) & mapa))
 		{
-			ijsdijs(imax, tetr, k, i);
+			ijsdijs(tetr, k, i);
 		}
 		else
 			write(1, ".", 1);
@@ -45,15 +42,12 @@ void		naris(u_int64_t llu)
 {
 	int			i;
 	int			k;
-	u_int64_t	imax;
 
-	imax = 1;
-	imax = imax << 63;
 	k = 0;
 	i = 0;
 	while (i < 64)
 	{
-		if (((imax >> i) & llu))
+		if (((g_imax >> i) & llu))
 			write(1, "#", 1);
 		else
 			write(1, ".", 1);

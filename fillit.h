@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 05:29:22 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 06:45:24 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int k);
 int			prav_razm(u_int64_t mapa);
 int			check6or8big(u_int64_t u, int l, int n, int size);
 u_int64_t	makegran(u_int64_t gran, int size);
-void		ijsdijs(u_int64_t imax, u_int64_t *tetr, int k, int i);
+void		ijsdijs(u_int64_t *tetr, int k, int i);
 void		asdfefe(int *i, int max, int *ki);
 u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik);
 void		narisgrantoo(u_int64_t llu, u_int64_t gran);
-int			checkif8(u_int64_t u, int i, int n, u_int64_t imax);
+int			checkif8(u_int64_t u, int i, int n);
 
 #endif
