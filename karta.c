@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 03:43:40 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 04:21:05 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
 		// ft_putstr("l = ");
 		// ft_putnbr(l);
 		// ft_putchar('\n');
+		// naris(tetrik);
 		tetr[k] = dvig_tetr_vgran(tetr, k, tetrik);
-		if (tetr[k] == 1)
+		if (tetr[k] == 1) // поэтому 1 и всё такое
 		{
 			ft_putstr("1st\n");
 			tetr = makethis(tetr, l, k - 1, tetr[k - 1] >> 1);
@@ -70,7 +71,7 @@ u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
 		}
 		k++;
 		if (k < l)
-			tetrik = tetr[k];
+			tetrik = g_nach8[k];
 	}
 	return (tetr);
 }
@@ -86,7 +87,7 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	gran = makegran(gran, g_size);
 	while (i < g_size * 8)
 	{
-		// narisgrantoo(tetr[k] >> i, gran);
+		// narisgrantoo(tetrik >> i, gran);
 		// naris(tetr[k] >> i);
 		if (((tetrik >> i) | gran) == (gran) && !(mapa & tetrik >> i)/* && CH_8_6*/)
 		{
@@ -105,7 +106,7 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	if (i == g_size * 8)
 	{
 		// narisgrantoo(tetr[k] >> i, gran);
-		return (1);
+		return (1);  // поэтому 1 и всё такое
 	}
 	ft_putstr("_____________NO IF_____________\n");
 	mapa |= (tetrik);
