@@ -6,18 +6,19 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 04:27:58 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 05:05:54 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "./libft/libft.h"
-# define CH_8_6 (check6or8big((tetr[k] >> i), 0, 0, g_size))
+# define CH_8_6 (check6or8big((tetrik >> i), 0, 0, g_size))
 
 int			g_len;
 int			g_size;
 u_int64_t	*g_nach8;
+u_int64_t	g_imax;
 int			kolvoreshvstroke(char *s);
 u_int16_t	*tetramina(char *s, int k, int sym, int l);
 int			tetr_check(u_int16_t *u, int l, int k);

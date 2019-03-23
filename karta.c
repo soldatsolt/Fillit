@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 04:27:22 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 05:06:59 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ u_int64_t	karta(unsigned short int *u, int l)
 	while (++k < l)
 		summ |= tetr[k];
 	naris_mass(summ, 0, tetr, 0);
-	// naris(summ);
+	// // naris(summ);
 	return (summ);
 }
 
@@ -95,6 +95,8 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 			// ft_putstr("VOSHLO\n");
 			return (tetrik);
 		}
+		// if (!CH_8_6)
+		// 	narisgrantoo(tetrik >> i, gran);
 		i++;
 	}
 	if (i == g_size * 8 && k == 0)
@@ -155,29 +157,29 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int k)
 	return (tetr[k]); // ТУТ МИНСАЙЗ = 7
 }
 
-u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu)
-{
-	u_int64_t gran;
-	u_int64_t tmp;
-	u_int64_t mapa;
-	u_int64_t i;
+// u_int64_t	zapoln_kartu(u_int64_t *tetr, int k, u_int64_t llu)
+// {
+// 	u_int64_t gran;
+// 	u_int64_t tmp;
+// 	u_int64_t mapa;
+// 	u_int64_t i;
 
-	i = 0;
-	mapa = summis(tetr, k, (u_int64_t)0);
-	gran = makegran(gran, g_size);
-	while (tetr[k] & mapa || !(CH_8_6))
-	{
-		tetr[k] = tetr[k] >> 1;
-		if ((tetr[k] | gran) != (gran))
-		{
-			tmp = tetr[k];
-			tetr[k] = dvig_tetr_vgran(tetr, k, gran);
-			if (tetr[k] == tmp)
-			{
+// 	i = 0;
+// 	mapa = summis(tetr, k, (u_int64_t)0);
+// 	gran = makegran(gran, g_size);
+// 	while (tetr[k] & mapa || !(CH_8_6))
+// 	{
+// 		tetr[k] = tetr[k] >> 1;
+// 		if ((tetr[k] | gran) != (gran))
+// 		{
+// 			tmp = tetr[k];
+// 			tetr[k] = dvig_tetr_vgran(tetr, k, gran);
+// 			if (tetr[k] == tmp)
+// 			{
 				
-			}
-		}
-	}
-	mapa |= (tetr[k]);
-	return (mapa);
-}
+// 			}
+// 		}
+// 	}
+// 	mapa |= (tetr[k]);
+// 	return (mapa);
+// }

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 03:15:52 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 04:38:05 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 05:05:01 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	check6or8big(u_int64_t u, int l, int n, int size)
 	int			i;
 	u_int64_t	imax;
 
+	l = size;
 	imax = 1;
 	imax = imax << 63;
 	i = 0;
@@ -25,10 +26,12 @@ int	check6or8big(u_int64_t u, int l, int n, int size)
 	{
 		if (((imax >> i) & u))
 		{
-			if (((imax >> (i - 1)) & u) && ((i) % size != 0))
+			if (((imax >> (i - 1)) & u) && ((i) % 8 != 0))
 				n++;
-			if (((imax >> (i + 1)) & u) && ((i + 1) % size != 0))
+			if (((imax >> (i + 1)) & u) && (i != l))
 				n++;
+			else
+				l = l + 8;
 			if (((imax >> (i - 8)) & u))
 				n++;
 			if (((imax >> (i + 8)) & u))
