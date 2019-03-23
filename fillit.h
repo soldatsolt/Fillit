@@ -6,14 +6,13 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 07:21:17 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 11:47:00 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "./libft/libft.h"
-# define CH_8_6 (check6or8big((tetrik >> i), 0, 0))
 
 int			g_len;
 int			g_size;

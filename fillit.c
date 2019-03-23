@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 10:51:54 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 11:19:11 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			main(int argc, char **argv)
 	if (u)
 	{
 		karta(u, g_len);
-		free (u);
+		free(u);
 		u = NULL;
 	}
 	else
