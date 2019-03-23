@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 00:37:19 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 02:52:27 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 04:25:06 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		ijsdijs(u_int64_t imax, u_int64_t *tetr, int k, int i)
 {
 	while (!((imax >> i) & tetr[k]))
 		k++;
-	ft_putchar(65 + k);
+	ft_putchar('A' + k);
 	k = 0;
 }
 

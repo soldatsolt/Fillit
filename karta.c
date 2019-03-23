@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 04:21:05 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/23 04:27:22 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
 		tetr[k] = dvig_tetr_vgran(tetr, k, tetrik);
 		if (tetr[k] == 1) // поэтому 1 и всё такое
 		{
-			ft_putstr("1st\n");
+			// ft_putstr("1st\n");
 			tetr = makethis(tetr, l, k - 1, tetr[k - 1] >> 1);
 		}
 		if (tetr[k] == 2)
 		{
-			ft_putstr("2nd\n");
+			// ft_putstr("2nd\n");
 			g_size++;
 			tetr = makethis(g_nach8, l, 0, g_nach8[0]);
 		}
@@ -89,10 +89,10 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	{
 		// narisgrantoo(tetrik >> i, gran);
 		// naris(tetr[k] >> i);
-		if (((tetrik >> i) | gran) == (gran) && !(mapa & tetrik >> i)/* && CH_8_6*/)
+		if (((tetrik >> i) | gran) == (gran) && !(mapa & tetrik >> i) && CH_8_6)
 		{
 			tetrik = tetrik >> i;
-			ft_putstr("VOSHLO\n");
+			// ft_putstr("VOSHLO\n");
 			return (tetrik);
 		}
 		i++;
