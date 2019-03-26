@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 11:47:29 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/26 15:53:24 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
 		if (k < l)
 			tetrik = g_nach8[k];
 	}
+	write(1, "DONE\n", 5);
+	naris(tetr[0]);
+	naris(tetr[1]);
+	naris(tetr[2]);
 	return (tetr);
 }
 
@@ -66,7 +70,9 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	gran = makegran(gran, g_size);
 	while (i < 64)
 	{
-		narisgrantoo(tetrik >> i, gran);
+		if (k == 2)
+			naris(tetrik >> i);
+		// narisgrantoo(tetrik >> i, gran);
 		if (((tetrik >> i) | gran) == (gran) && !(mapa & tetrik >> i) && \
 		(check6or8big((tetrik >> i), 0, 0)))
 		{
@@ -77,9 +83,10 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	}
 	if (i == 64 && k == 0)
 		return (2);
-	if (i == 64 * 8)
+	if (i == 64)
 		return (1);
 	mapa |= (tetrik);
+	write(1, "UPS(\n", 5);
 	return (mapa);
 }
 
