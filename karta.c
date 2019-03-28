@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 14:05:16 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 14:30:28 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void		karta(u_int16_t *u, int l)
 	ft_bzero(summ, 32);
 	g_size = min_map_size(l);
 	summ = doit(summ, u, l);
-	ft_putnbr((wid(u[2])));
 	naris_mass(summ);
 }
 
@@ -32,15 +31,27 @@ u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l)
 	int i;
 	int wid;
 	int hig;
+	int j;
 
+	j = 0;
 	k = 0;
 	i = 0;
 	while (k < l)
 	{
-		if (norm_li(summ, u[k], i, 0))
+		wid = widt(u[k]);
+		hig = high(u[k]);
+		if (norm_li(summ, u[k], i, j))
 		{
-			summ = vstav_v_summ(summ, u[k], i, 0);
-			k++;
+			if (i + wid > g_size)
+			{
+				j++;
+				i = 0;
+			}
+			else
+			{
+				summ = vstav_v_summ(summ, u[k], i, j);
+				k++;
+			}
 		}
 		else
 			i++;
@@ -153,17 +164,27 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 
 int			min_map_size(int l)
 {
-	int	n;
-	int	qw;
-
-	n = 2;
-	qw = n * n;
-	while (qw < l)
-	{
-		n++;
-		qw = n * n;
-	}
-	return (n);
+	if (l == 1)
+		return (2);
+	if (l == 2)
+		return (3);
+	if (l >= 3 && l <= 4)
+		return (4);
+	if (l >= 5 && l <= 6)
+		return (5);
+	if (l >= 7 && l <= 9)
+		return (6);
+	if (l >= 10 && l <= 12)
+		return (7);
+	if (l >= 13 && l <= 16)
+		return (8);
+	if (l >= 17 && l <= 20)
+		return (9);
+	if (l >= 21 && l <= 24)
+		return (10);
+	if (l >= 25 && l <= 26)
+		return (11);
+	return (15);
 }
 
 u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int k)

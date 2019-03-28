@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 14:02:33 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 14:14:47 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			checkif8(u_int64_t u, int i, int n);
 u_int16_t	*vstav_v_summ(u_int16_t *summ, u_int16_t u, int i, int j);
 int			norm_li(u_int16_t *summ, u_int16_t u, int i, int j);
 u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l);
-int			hig(u_int16_t u);
-int			wid(u_int16_t u);
+int			high(u_int16_t u);
+int			widt(u_int16_t u);
 
 #endif

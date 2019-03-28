@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 14:05:09 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 14:14:52 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			prav_razm(u_int64_t mapa)
 	return ((hzj > hzi) ? hzj : hzi);
 }
 
-int			hig(u_int16_t u)
+int			high(u_int16_t u)
 {
 	int	hig;
 
@@ -103,7 +103,7 @@ int			hig(u_int16_t u)
 	return (hig);
 }
 
-int			wid(u_int16_t u)
+int			widt(u_int16_t u)
 {
 	int	wid;
 
