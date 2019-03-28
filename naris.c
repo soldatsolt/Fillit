@@ -6,13 +6,13 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 12:26:16 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 13:01:13 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		naris_mass(u_int16_t summ[16])
+void		naris_mass(u_int16_t *summ)
 {
 	int	i;
 	int	j;
