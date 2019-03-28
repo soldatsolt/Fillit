@@ -6,35 +6,32 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 06:48:30 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 12:23:04 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		naris_mass(u_int64_t mapa, int k, u_int64_t *tetr, int i)
+void		naris_mass(u_int16_t summ[16])
 {
-	int			max;
-	int			ki;
+	int	i;
+	int	j;
 
-	max = prav_razm(mapa);
-	ki = max;
-	while (i < max * 8)
+	j = 0;
+	i = 0;
+	while (j < 16)
 	{
-		if (i == ki && max != 8)
+		while (i < 16)
 		{
-			asdfefe(&i, max, &ki);
-			continue ;
+			if ((32768 >> i) & summ[j])
+				write(1, "#", 1);
+			else
+				write(1, ".", 1);
+			i++;
 		}
-		if (((g_imax >> i) & mapa))
-		{
-			ijsdijs(tetr, k, i);
-		}
-		else
-			write(1, ".", 1);
-		i++;
-		if ((i) % 8 == 0)
-			write(1, "\n", 1);
+		write(1, "\n", 1);
+		j++;
+		i = 0;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/26 15:53:24 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 12:24:55 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,10 @@ void		karta(unsigned short int *u, int l)
 {
 	int			k;
 	u_int64_t	*tetr;
-	u_int64_t	summ;
+	u_int16_t	summ[16];
 
-	summ = 0;
-	tetr = (u_int64_t *)malloc(sizeof(u_int64_t) * l);
-	g_nach8 = (u_int64_t *)malloc(sizeof(u_int64_t) * l);
-	ft_bzero(tetr, l * 8);
-	k = -1;
-	g_size = min_map_size(l * 4);
-	while (++k < l)
-		tetr[k] = mod_karta(u[k], tetr, k);
-	k = -1;
-	while (++k < l)
-		g_nach8[k] = mod_karta(u[k], g_nach8, k);
-	tetr = makethis(tetr, l, 0, tetr[0]);
-	k = -1;
-	while (++k < l)
-		summ |= tetr[k];
-	naris_mass(summ, 0, tetr, 0);
+	ft_bzero(summ, 32);
+	naris_mass(summ);
 }
 
 u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
@@ -46,16 +32,17 @@ u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
 		if (tetr[k] == 2)
 		{
 			g_size++;
+			ft_putnbr(g_size);
 			tetr = makethis(g_nach8, l, 0, g_nach8[0]);
 		}
 		k++;
 		if (k < l)
 			tetrik = g_nach8[k];
 	}
-	write(1, "DONE\n", 5);
-	naris(tetr[0]);
-	naris(tetr[1]);
-	naris(tetr[2]);
+	// write(1, "DONE\n", 5);
+	// naris(tetr[0]);
+	// naris(tetr[1]);
+	// naris(tetr[2]);
 	return (tetr);
 }
 
@@ -68,11 +55,10 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	i = 0;
 	mapa = summis(tetr, k, (u_int64_t)0);
 	gran = makegran(gran, g_size);
-	while (i < 64)
+	// ft_putnbr(g_size);
+	while (i < g_size * 8)
 	{
-		if (k == 2)
-			naris(tetrik >> i);
-		// narisgrantoo(tetrik >> i, gran);
+		narisgrantoo(tetrik >> i, gran);
 		if (((tetrik >> i) | gran) == (gran) && !(mapa & tetrik >> i) && \
 		(check6or8big((tetrik >> i), 0, 0)))
 		{
@@ -81,9 +67,9 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 		}
 		i++;
 	}
-	if (i == 64 && k == 0)
+	if (i == g_size * 8 && k == 0)
 		return (2);
-	if (i == 64)
+	if (i == g_size * 8)
 		return (1);
 	mapa |= (tetrik);
 	write(1, "UPS(\n", 5);
