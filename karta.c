@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 15:05:25 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 15:23:04 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l)
 				{
 					ft_putstr("@@@\n");
 					summ = vstav_v_summ(summ, u[k], i, j);
+					j = 41;
 					break ;
 				}
 				i++;
@@ -57,6 +58,9 @@ u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l)
 			ft_putstr("@j@\n");
 			i = 0;
 		}
+	//	if (j != 42)
+			
+		j = 0;
 		k++;
 	}
 	return (summ);
