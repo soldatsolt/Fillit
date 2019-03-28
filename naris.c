@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 13:12:18 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 14:05:09 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ u_int64_t	uvel_gran(u_int64_t gran)
 
 int			prav_razm(u_int64_t mapa)
 {
-	int			hzi;
-	int			hzj;
+	int	hzi;
+	int	hzj;
 
 	hzi = 0;
 	hzj = 0;
@@ -90,4 +90,26 @@ int			prav_razm(u_int64_t mapa)
 	hzi = 8 - hzi;
 	hzj = 8 - hzj;
 	return ((hzj > hzi) ? hzj : hzi);
+}
+
+int			hig(u_int16_t u)
+{
+	int	hig;
+
+	hig = 0;
+	while (!((((u_int16_t)15 << (4 * hig))) & (u)))
+		hig++;
+	hig = 4 - hig;
+	return (hig);
+}
+
+int			wid(u_int16_t u)
+{
+	int	wid;
+
+	wid = 0;
+	while (!((((u_int64_t)4369 << (wid))) & (u)))
+		wid++;
+	wid = 4 - wid;
+	return (wid);
 }

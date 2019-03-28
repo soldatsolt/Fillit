@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 13:46:05 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 14:05:16 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		karta(u_int16_t *u, int l)
 	ft_bzero(summ, 32);
 	g_size = min_map_size(l);
 	summ = doit(summ, u, l);
+	ft_putnbr((wid(u[2])));
 	naris_mass(summ);
 }
 
@@ -29,6 +30,8 @@ u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l)
 {
 	int k;
 	int i;
+	int wid;
+	int hig;
 
 	k = 0;
 	i = 0;
