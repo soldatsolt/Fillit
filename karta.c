@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 13:06:33 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 13:32:39 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void		karta(u_int16_t *u, int l)
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
 	g_size = min_map_size(l);
-	summ = vstav_v_summ(summ, u[0], 5, 2);
+	summ = vstav_v_summ(summ, u[1], 0, 1);
+	printf("\nnormli = %i\n ", norm_li(summ, u[1], 3, 0));
 	naris_mass(summ);
 }
 
@@ -41,6 +42,31 @@ u_int16_t	*vstav_v_summ(u_int16_t *summ, u_int16_t u, int i, int j)
 	else
 		summ[j + 3] = (u & 0x000F) >> (i - 12);
 	return (summ);
+}
+
+int			norm_li(u_int16_t *summ, u_int16_t u, int i, int j)
+{
+	if (summ[j] & (u & 0xF000) >> i)
+		return (0);
+	if (4 - i > 0)
+		if (summ[j + 1] & (u & 0x0F00) << (4 - i))
+			return (0);
+	else
+		if (summ[j + 1] & (u & 0x0F00) >> (i - 4))
+			return(0);
+	if (8 - i > 0)
+		if (summ[j + 2] & (u & 0x00F0) << (8 - i))
+			return (0);
+	else
+		if (summ[j + 2] & (u & 0x00F0) >> (i - 8))
+			return (0);
+	if (12 - i > 0)
+		if (summ[j + 3] & (u & 0x000F) << (12 - i))
+			return (0);
+	else
+		if (summ[j + 3] & (u & 0x000F) >> (i - 12))
+			return (0);
+	return (1);
 }
 
 u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
