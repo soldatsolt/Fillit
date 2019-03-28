@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 16:38:03 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 17:43:42 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef	struct	s_tetr
 	int			i;
 	int			j;
 	int			k;
+	int			w;
+	int			h;
 	u_int16_t	u;
 }				t_tetr;
 
@@ -51,7 +53,7 @@ void		narisgrantoo(u_int64_t llu, u_int64_t gran);
 int			checkif8(u_int64_t u, int i, int n);
 u_int16_t	*vstav_v_summ(u_int16_t *summ, u_int16_t u, int i, int j);
 int			norm_li(u_int16_t *summ, u_int16_t u, int i, int j);
-u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l);
+u_int16_t	*doit(u_int16_t *summ, t_tetr *tetr, int l, int k);
 int			high(u_int16_t u);
 int			widt(u_int16_t u);
 t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l);

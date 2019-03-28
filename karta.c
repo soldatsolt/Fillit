@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 16:41:26 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 17:45:36 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void		karta(u_int16_t *u, int l)
 	ft_bzero(summ, 32);
 	tetr = (t_tetr *)malloc(sizeof(t_tetr) * l);
 	tetr = maketetrstruct(tetr, u, l);
-
-
-
-
-	// g_size = min_map_size(l);
-	// summ = doit(summ, u, l);
-	// naris_mass(summ);
+	g_size = min_map_size(l);
+	
+	
+	
+	summ = doit(summ, tetr, l, 0);
+	naris_mass(summ);
 }
 
 t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l)
@@ -42,47 +41,38 @@ t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l)
 		tetr[k].i = 0;
 		tetr[k].j = 0;
 		tetr[k].k = k;
+		tetr[k].w = widt(u[k]);
+		tetr[k].h = high(u[k]);
 		k++;
 	}
 	return (tetr);
 }
 
-u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l)
+u_int16_t	*doit(u_int16_t *summ, t_tetr *tetr, int l, int k)
 {
-	int k;
-	int i;
-	int wid;
-	int hig;
-	int j;
-
-	j = 0;
-	k = 0;
-	i = 0;
 	while (k < l)
 	{
-		wid = widt(u[k]);
-		hig = high(u[k]);
-		while (j <= g_size - hig)
+		while (tetr[k].j <= g_size - tetr[k].h)
 		{
-			while (i <= g_size - wid)
+			while (tetr[k].i <= g_size - tetr[k].w)
 			{
-				if (norm_li(summ, u[k], i, j))
+				if (norm_li(summ, tetr[k].u, tetr[k].i, tetr[k].j))
 				{
 					ft_putstr("@@@\n");
-					summ = vstav_v_summ(summ, u[k], i, j);
-					j = 41;
+					summ = vstav_v_summ(summ, tetr[k].u, tetr[k].i, tetr[k].j);
+					tetr[k].j = 41;
 					break ;
 				}
-				i++;
+				tetr[k].i++;
 				ft_putstr("@i@\n");
 			}
-			j++;
+			tetr[k].j++;
 			ft_putstr("@j@\n");
-			i = 0;
+			tetr[k].i = 0;
 		}
 	//	if (j != 42)
 			
-		j = 0;
+		tetr[k].j = 0;
 		k++;
 	}
 	return (summ);
