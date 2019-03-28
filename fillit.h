@@ -6,13 +6,21 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 14:14:47 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 16:38:03 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "./libft/libft.h"
+
+typedef	struct	s_tetr
+{
+	int			i;
+	int			j;
+	int			k;
+	u_int16_t	u;
+}				t_tetr;
 
 int			g_len;
 int			g_size;
@@ -46,5 +54,6 @@ int			norm_li(u_int16_t *summ, u_int16_t u, int i, int j);
 u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l);
 int			high(u_int16_t u);
 int			widt(u_int16_t u);
+t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l);
 
 #endif

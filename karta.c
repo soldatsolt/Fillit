@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 15:23:04 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 16:41:26 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,36 @@
 void		karta(u_int16_t *u, int l)
 {
 	int			k;
-	u_int64_t	*tetr;
+	t_tetr		*tetr;
 	u_int16_t	*summ;
 
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
-	g_size = min_map_size(l);
-	summ = doit(summ, u, l);
-	naris_mass(summ);
+	tetr = (t_tetr *)malloc(sizeof(t_tetr) * l);
+	tetr = maketetrstruct(tetr, u, l);
+
+
+
+
+	// g_size = min_map_size(l);
+	// summ = doit(summ, u, l);
+	// naris_mass(summ);
+}
+
+t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l)
+{
+	int k;
+
+	k = 0;
+	while (k < l)
+	{
+		tetr[k].u = u[k];
+		tetr[k].i = 0;
+		tetr[k].j = 0;
+		tetr[k].k = k;
+		k++;
+	}
+	return (tetr);
 }
 
 u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l)
