@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 14:33:06 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 15:05:25 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,24 @@ u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l)
 	{
 		wid = widt(u[k]);
 		hig = high(u[k]);
-		if (norm_li(summ, u[k], i, j))
+		while (j <= g_size - hig)
 		{
-			if (i + wid > g_size || j + hig > g_size)
+			while (i <= g_size - wid)
 			{
-				j++;
-				i = 0;
+				if (norm_li(summ, u[k], i, j))
+				{
+					ft_putstr("@@@\n");
+					summ = vstav_v_summ(summ, u[k], i, j);
+					break ;
+				}
+				i++;
+				ft_putstr("@i@\n");
 			}
-			else
-			{
-				summ = vstav_v_summ(summ, u[k], i, j);
-				k++;
-			}
+			j++;
+			ft_putstr("@j@\n");
+			i = 0;
 		}
-		else
-			i++;
+		k++;
 	}
 	return (summ);
 }
@@ -125,10 +128,6 @@ u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
 		if (k < l)
 			tetrik = g_nach8[k];
 	}
-	// write(1, "DONE\n", 5);
-	// naris(tetr[0]);
-	// naris(tetr[1]);
-	// naris(tetr[2]);
 	return (tetr);
 }
 
