@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 14:30:28 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 14:33:06 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ u_int16_t	*doit(u_int16_t *summ, u_int16_t *u, int l)
 		hig = high(u[k]);
 		if (norm_li(summ, u[k], i, j))
 		{
-			if (i + wid > g_size)
+			if (i + wid > g_size || j + hig > g_size)
 			{
 				j++;
 				i = 0;
