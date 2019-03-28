@@ -6,20 +6,34 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 12:24:55 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 12:45:51 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		karta(unsigned short int *u, int l)
+void		karta(u_int16_t *u, int l)
 {
 	int			k;
 	u_int64_t	*tetr;
-	u_int16_t	summ[16];
+	u_int16_t	*summ;
 
+	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
+	g_size = min_map_size(l);
+	vstav_v_summ(&summ, u[0]);
 	naris_mass(summ);
+}
+
+void		vstav_v_summ(u_int16_t **sum, u_int16_t u)
+{
+	u_int16_t	*summ;
+
+	summ = *sum;
+	summ[0] = u & 0xF000;
+	summ[1] = (u & 0x0F00) << 4;
+	summ[2] = (u & 0x00F0) << 8;
+	summ[3] = (u & 0x000F) << 12;
 }
 
 u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)

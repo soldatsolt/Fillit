@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 12:21:36 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/28 12:38:59 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void		asdfefe(int *i, int max, int *ki);
 u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik);
 void		narisgrantoo(u_int64_t llu, u_int64_t gran);
 int			checkif8(u_int64_t u, int i, int n);
+void		vstav_v_summ(u_int16_t **sum, u_int16_t u);
 
 #endif
