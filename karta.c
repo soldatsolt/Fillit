@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/29 22:49:55 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/29 22:52:56 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		karta(u_int16_t *u, int l)
 
 	tetr = doit(tetr, l, 0, 0);
 	summ = summis(tetr, l);
-	naris_mass(summ);
+	naris_mass(summ, tetr, l);
 }
 
 t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
@@ -48,8 +48,6 @@ t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
 			tetr = doit(g_nach8, l, 0, 0);
 		}
 		k++;
-		// if (k < l)
-		// 	tetr[k] = g_nach8[k];
 	}
 	return (tetr);
 }
