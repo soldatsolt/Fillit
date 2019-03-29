@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/29 22:38:31 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/29 22:48:25 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,15 @@ void		karta(u_int16_t *u, int l)
 
 t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
 {
+	tetr[k].i = i;
 	while (k < l)
 	{
 		tetr[k] = dodvizh(tetr, k, tetr[k].i);
 		if (tetr[k].j == 51)
+		{
+			tetr[k] = g_nach8[k];
 			tetr = doit(tetr, l, k - 1, (tetr[k - 1].i + 1));
+		}
 		if (tetr[k].j == 52)
 		{
 			g_size++;
