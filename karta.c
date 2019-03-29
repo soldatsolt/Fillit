@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/29 22:52:56 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 00:46:23 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		karta(u_int16_t *u, int l)
 	int			k;
 	t_tetr		*tetr;
 	u_int16_t	*summ;
+	t_koor		*t;
 
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
@@ -25,10 +26,53 @@ void		karta(u_int16_t *u, int l)
 	tetr = maketetrstruct(tetr, u, l);
 	g_nach8 = maketetrstruct(g_nach8, u, l);
 	g_size = min_map_size(l);
-
 	tetr = doit(tetr, l, 0, 0);
+	t = (t_koor *)malloc(sizeof(t_koor) * l);
+	t = makekoor(t, tetr, l, 0);
+
+
 	summ = summis(tetr, l);
+
 	naris_mass(summ, tetr, l);
+}
+
+t_koor		*makekoor(t_koor *t, t_tetr *tetr, int l, int k)
+{
+	int f;
+	int i;
+	
+	i = 1;
+	f = 0;
+	while (k < l)
+	{
+		t[k].i1 = tetr[k].i;
+		t[k].j1 = tetr[k].j;
+		while (f < 3 && i < 16)
+		{
+			if (((32768 >> i) & tetr[k].u))
+			{
+				if (f == 0)
+				{
+					t[k].i2 = tetr[k].i + i % 4;
+					t[k].j2 = tetr[k].j + i / 4;
+				}
+				if (f == 1)
+				{
+					t[k].i3 = tetr[k].i + i % 4;
+					t[k].j3 = tetr[k].j + i / 4;
+				}
+				if (f == 2)
+				{
+					t[k].i4 = tetr[k].i + i % 4;
+					t[k].j4 = tetr[k].j + i / 4;
+				}
+				f++;
+			}
+			i++;
+		}
+		k++;
+	}
+	return (t);
 }
 
 t_tetr		*doit(t_tetr *tetr, int l, int k, int i)

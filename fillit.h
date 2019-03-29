@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/29 22:52:34 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 00:57:09 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ typedef	struct	s_tetr
 	int			h;
 	u_int16_t	u;
 }				t_tetr;
+typedef	struct	s_koor
+{
+	int	i1;
+	int	j1;
+	int	i2;
+	int	j2;
+	int	i3;
+	int	j3;
+	int	i4;
+	int	j4;
+}				t_koor;
 
 int			g_len;
 int			g_size;
@@ -58,5 +69,6 @@ int			high(u_int16_t u);
 int			widt(u_int16_t u);
 t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l);
 t_tetr		*doit(t_tetr *tetr, int l, int k, int i);
+t_koor		*makekoor(t_koor *t, t_tetr *tetr, int l, int k);
 
 #endif

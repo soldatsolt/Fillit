@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/29 23:07:38 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 00:49:44 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ void		naris_mass(u_int16_t *summ, t_tetr *tetr, int l)
 			{
 				while (k < l)
 				{
-					if (tetr[k].i == i && tetr[k].j == j)
+					if ((32768 >> ((i - tetr[k].i) % 4 + 4 * (j - tetr[k].j))) & tetr[k].u)
+					{
 						ft_putchar('A' + k);
+						break ;
+					}
 					k++;
 				}
 				k = 0;
