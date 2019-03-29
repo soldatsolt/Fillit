@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/29 21:38:45 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/29 22:21:13 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ u_int16_t	*summis(t_tetr *tetr, int k)
 	i = 0;
 	while (i < k)
 	{
-		summ = vstav_v_summ(summ, tetr[k].u, tetr[k].i, tetr[k].j);
+		summ = vstav_v_summ(summ, tetr[i].u, tetr[i].i, tetr[i].j);
 		i++;
 	}
 	return (summ);

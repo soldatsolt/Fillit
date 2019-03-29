@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/29 21:59:36 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/29 22:11:10 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,10 @@ void		karta(u_int16_t *u, int l)
 	tetr = maketetrstruct(tetr, u, l);
 	g_nach8 = maketetrstruct(tetr, u, l);
 	g_size = min_map_size(l);
-	
-	
-	
+
 	tetr = doit(tetr, l, 0, 0);
 	summ = summis(tetr, l);
 	naris_mass(summ);
-}
-
-t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l)
-{
-	int k;
-
-	k = 0;
-	while (k < l)
-	{
-		tetr[k].u = u[k];
-		tetr[k].i = 0;
-		tetr[k].j = 0;
-		tetr[k].k = k;
-		tetr[k].w = widt(u[k]);
-		tetr[k].h = high(u[k]);
-		k++;
-	}
-	return (tetr);
 }
 
 t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
@@ -64,8 +44,8 @@ t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
 			tetr = doit(g_nach8, l, 0, 0);
 		}
 		k++;
-		if (k < l)
-			tetr[k] = g_nach8[k];
+		// if (k < l)
+		// 	tetr[k] = g_nach8[k];
 	}
 	return (tetr);
 }
@@ -83,6 +63,7 @@ t_tetr		dodvizh(t_tetr *tetr, int k, int i)
 		{
 			if (norm_li(summ, tetr[k].u, tetr[k].i, tetr[k].j))
 			{
+				// ft_putstr("RETURN\n");
 				return (tetr[k]);
 				tetr[k].j = 41;
 				break ;
@@ -102,7 +83,7 @@ t_tetr		dodvizh(t_tetr *tetr, int k, int i)
 		tetr[k].j = 41;
 		return (tetr[k]);
 	}
-	ft_putstr("BAD NEWX\n");
+	// ft_putstr("BAD NEWX\n");
 	return (tetr[k]);
 }
 
@@ -255,4 +236,22 @@ u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int k)
 	}
 	tetr[k] = llu;
 	return (tetr[k]);
+}
+
+t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l)
+{
+	int k;
+
+	k = 0;
+	while (k < l)
+	{
+		tetr[k].u = u[k];
+		tetr[k].i = 0;
+		tetr[k].j = 0;
+		tetr[k].k = k;
+		tetr[k].w = widt(u[k]);
+		tetr[k].h = high(u[k]);
+		k++;
+	}
+	return (tetr);
 }
