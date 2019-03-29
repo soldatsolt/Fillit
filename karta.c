@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/29 22:11:10 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/29 22:38:31 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		karta(u_int16_t *u, int l)
 	tetr = (t_tetr *)malloc(sizeof(t_tetr) * l);
 	g_nach8 = (t_tetr *)malloc(sizeof(t_tetr) * l);
 	tetr = maketetrstruct(tetr, u, l);
-	g_nach8 = maketetrstruct(tetr, u, l);
+	g_nach8 = maketetrstruct(g_nach8, u, l);
 	g_size = min_map_size(l);
 
 	tetr = doit(tetr, l, 0, 0);
@@ -36,9 +36,9 @@ t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
 	while (k < l)
 	{
 		tetr[k] = dodvizh(tetr, k, tetr[k].i);
-		if (tetr[k].j == 41)
+		if (tetr[k].j == 51)
 			tetr = doit(tetr, l, k - 1, (tetr[k - 1].i + 1));
-		if (tetr[k].j == 42)
+		if (tetr[k].j == 52)
 		{
 			g_size++;
 			tetr = doit(g_nach8, l, 0, 0);
@@ -54,6 +54,7 @@ t_tetr		dodvizh(t_tetr *tetr, int k, int i)
 {
 	u_int16_t *summ;
 
+	tetr[k].i = i;
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
 	summ = summis(tetr, k);
@@ -75,15 +76,15 @@ t_tetr		dodvizh(t_tetr *tetr, int k, int i)
 	}
 	if (tetr[k].j != 42 && k == 0)
 	{
-		tetr[k].j = 42;
+		tetr[k].j = 52;
 		return (tetr[k]);
 	}
 	if (tetr[k].j != 42)
 	{
-		tetr[k].j = 41;
+		tetr[k].j = 51;
 		return (tetr[k]);
 	}
-	// ft_putstr("BAD NEWX\n");
+	ft_putstr("BAD NEWX\n");
 	return (tetr[k]);
 }
 
