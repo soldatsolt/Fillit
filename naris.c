@@ -6,13 +6,13 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 00:49:44 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 01:07:31 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		naris_mass(u_int16_t *summ, t_tetr *tetr, int l)
+void		naris_mass(u_int16_t *summ, t_koor *t, int l)
 {
 	int	i;
 	int	j;
@@ -29,7 +29,7 @@ void		naris_mass(u_int16_t *summ, t_tetr *tetr, int l)
 			{
 				while (k < l)
 				{
-					if ((32768 >> ((i - tetr[k].i) % 4 + 4 * (j - tetr[k].j))) & tetr[k].u)
+					if ((t[k].i1 == i && t[k].j1 == j) || (t[k].i2 == i && t[k].j2 == j) || (t[k].i3 == i && t[k].j3 == j) || (t[k].i4 == i && t[k].j4 == j))
 					{
 						ft_putchar('A' + k);
 						break ;

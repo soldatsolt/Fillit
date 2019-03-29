@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 00:57:09 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 00:59:43 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u);
 void		karta(u_int16_t *u, int l);
 int			min_map_size(int l);
 void		naris(u_int64_t llu);
-void		naris_mass(u_int16_t *summ, t_tetr *tetr, int l);
+void		naris_mass(u_int16_t *summ, t_koor *t, int l);
 u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik);
 u_int16_t	*summis(t_tetr *tetr, int k);
 u_int64_t	uvel_gran(u_int64_t gran);
