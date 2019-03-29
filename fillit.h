@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 01:27:18 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 02:03:09 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ u_int64_t	g_imax;
 int			kolvoreshvstroke(char *s);
 u_int16_t	*tetramina(char *s, int k, int sym, int l);
 int			tetr_check(u_int16_t *u, int l, int k);
-int			check6or8(u_int16_t u, int l, int n);
+int			check6or8(u_int16_t u, int n);
 int			dvizh_vverkh(u_int16_t *u, int i, int n);
 int			dvizh_vlevo(u_int16_t *u, int i, int n);
 u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u);

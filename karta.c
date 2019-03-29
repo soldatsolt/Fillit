@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 01:33:55 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 02:03:58 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		karta(u_int16_t *u, int l)
 {
-	int			k;
 	t_tetr		*tetr;
 	u_int16_t	*summ;
 	t_koor		*t;

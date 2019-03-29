@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 11:19:11 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 02:01:13 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int			main(int argc, char **argv)
 	int			o;
 	u_int16_t	*u;
 
+	o = 0;
 	if (argc == 2)
 		o = open(argv[1], O_RDONLY);
 	if (read(o, NULL, 0) < 0)

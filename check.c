@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 15:52:50 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 12:21:42 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 02:03:35 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	tetr_check(u_int16_t *u, int l, int k)
 	i = 0;
 	while (i < l / 16)
 	{
-		if (!(check6or8(u[i], l, 0)))
+		if (!(check6or8(u[i], 0)))
 			k = 0;
 		i++;
 	}
@@ -45,20 +45,20 @@ int	tetr_check(u_int16_t *u, int l, int k)
 	while (i < l / 16)
 	{
 		while (dvizh_vverkh(&u[i], 0, 0))
-			i = i;
+			i = i + 1 - 1;
 		i++;
 	}
 	i = 0;
 	while (i < l / 16)
 	{
 		while (dvizh_vlevo(&u[i], 0, 0))
-			i = i;
+			i = i + 1 - 1;
 		i++;
 	}
 	return ((k) ? 1 : 0);
 }
 
-int	check6or8(u_int16_t u, int l, int n)
+int	check6or8(u_int16_t u, int n)
 {
 	int		i;
 

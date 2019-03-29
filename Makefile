@@ -6,7 +6,7 @@ SRCS = normichno.c moding.c naris.c fillit.c check.c karta.c ./libft/libft.a
 all: $(NAME)
 
 $(NAME):
-	@gcc $(SRCS) -o $(NAME)
+	@gcc $(SRCS) $(FLAGS) -o $(NAME)
 
 g:
 	@gcc -g $(SRCS)
