@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 14:14:52 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/29 21:38:45 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,16 @@ void		naris(u_int64_t llu)
 	write(1, "\n", 1);
 }
 
-u_int64_t	summis(u_int64_t *tetr, int k, u_int64_t summ)
+u_int16_t	*summis(t_tetr *tetr, int k)
 {
-	int i;
+	int			i;
+	u_int16_t	*summ;
 
+	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	i = 0;
 	while (i < k)
 	{
-		summ |= tetr[i];
+		summ = vstav_v_summ(summ, tetr[k].u, tetr[k].i, tetr[k].j);
 		i++;
 	}
 	return (summ);

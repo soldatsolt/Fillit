@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/28 17:45:36 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/29 21:59:36 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ void		karta(u_int16_t *u, int l)
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
 	tetr = (t_tetr *)malloc(sizeof(t_tetr) * l);
+	g_nach8 = (t_tetr *)malloc(sizeof(t_tetr) * l);
 	tetr = maketetrstruct(tetr, u, l);
+	g_nach8 = maketetrstruct(tetr, u, l);
 	g_size = min_map_size(l);
 	
 	
 	
-	summ = doit(summ, tetr, l, 0);
+	tetr = doit(tetr, l, 0, 0);
+	summ = summis(tetr, l);
 	naris_mass(summ);
 }
 
@@ -48,34 +51,59 @@ t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l)
 	return (tetr);
 }
 
-u_int16_t	*doit(u_int16_t *summ, t_tetr *tetr, int l, int k)
+t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
 {
 	while (k < l)
 	{
-		while (tetr[k].j <= g_size - tetr[k].h)
+		tetr[k] = dodvizh(tetr, k, tetr[k].i);
+		if (tetr[k].j == 41)
+			tetr = doit(tetr, l, k - 1, (tetr[k - 1].i + 1));
+		if (tetr[k].j == 42)
 		{
-			while (tetr[k].i <= g_size - tetr[k].w)
-			{
-				if (norm_li(summ, tetr[k].u, tetr[k].i, tetr[k].j))
-				{
-					ft_putstr("@@@\n");
-					summ = vstav_v_summ(summ, tetr[k].u, tetr[k].i, tetr[k].j);
-					tetr[k].j = 41;
-					break ;
-				}
-				tetr[k].i++;
-				ft_putstr("@i@\n");
-			}
-			tetr[k].j++;
-			ft_putstr("@j@\n");
-			tetr[k].i = 0;
+			g_size++;
+			tetr = doit(g_nach8, l, 0, 0);
 		}
-	//	if (j != 42)
-			
-		tetr[k].j = 0;
 		k++;
+		if (k < l)
+			tetr[k] = g_nach8[k];
 	}
-	return (summ);
+	return (tetr);
+}
+
+t_tetr		dodvizh(t_tetr *tetr, int k, int i)
+{
+	u_int16_t *summ;
+
+	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
+	ft_bzero(summ, 32);
+	summ = summis(tetr, k);
+	while (tetr[k].j <= g_size - tetr[k].h)
+	{
+		while (tetr[k].i <= g_size - tetr[k].w)
+		{
+			if (norm_li(summ, tetr[k].u, tetr[k].i, tetr[k].j))
+			{
+				return (tetr[k]);
+				tetr[k].j = 41;
+				break ;
+			}
+			tetr[k].i++;
+		}
+		tetr[k].j++;
+		tetr[k].i = 0;
+	}
+	if (tetr[k].j != 42 && k == 0)
+	{
+		tetr[k].j = 42;
+		return (tetr[k]);
+	}
+	if (tetr[k].j != 42)
+	{
+		tetr[k].j = 41;
+		return (tetr[k]);
+	}
+	ft_putstr("BAD NEWX\n");
+	return (tetr[k]);
 }
 
 u_int16_t	*vstav_v_summ(u_int16_t *summ, u_int16_t u, int i, int j)
@@ -138,11 +166,11 @@ u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik)
 		{
 			g_size++;
 			ft_putnbr(g_size);
-			tetr = makethis(g_nach8, l, 0, g_nach8[0]);
+			// tetr = makethis(g_nach8, l, 0, g_nach8[0]);
 		}
 		k++;
-		if (k < l)
-			tetrik = g_nach8[k];
+		// if (k < l)
+			// tetrik = g_nach8[k];
 	}
 	return (tetr);
 }
@@ -154,7 +182,7 @@ u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik)
 	u_int64_t	gran;
 
 	i = 0;
-	mapa = summis(tetr, k, (u_int64_t)0);
+	// mapa = summis(tetr, k, (u_int64_t)0);
 	gran = makegran(gran, g_size);
 	// ft_putnbr(g_size);
 	while (i < g_size * 8)
