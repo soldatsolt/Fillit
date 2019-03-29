@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 01:07:24 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 01:14:51 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,30 @@ t_koor		*makekoor(t_koor *t, t_tetr *tetr, int l, int k)
 	int f;
 	int i;
 	
-	i = 1;
+	i = 0;
 	f = 0;
 	while (k < l)
 	{
-		t[k].i1 = tetr[k].i;
-		t[k].j1 = tetr[k].j;
-		while (f < 3 && i < 16)
+		while (f < 4 && i < 16)
 		{
 			if (((32768 >> i) & tetr[k].u))
 			{
 				if (f == 0)
 				{
+					t[k].i1 = tetr[k].i + i % 4;
+					t[k].j1 = tetr[k].j + i / 4;
+				}
+				if (f == 1)
+				{
 					t[k].i2 = tetr[k].i + i % 4;
 					t[k].j2 = tetr[k].j + i / 4;
 				}
-				if (f == 1)
+				if (f == 2)
 				{
 					t[k].i3 = tetr[k].i + i % 4;
 					t[k].j3 = tetr[k].j + i / 4;
 				}
-				if (f == 2)
+				if (f == 3)
 				{
 					t[k].i4 = tetr[k].i + i % 4;
 					t[k].j4 = tetr[k].j + i / 4;
@@ -70,7 +73,7 @@ t_koor		*makekoor(t_koor *t, t_tetr *tetr, int l, int k)
 			}
 			i++;
 		}
-		i = 1;
+		i = 0;
 		f = 0;
 		k++;
 	}
