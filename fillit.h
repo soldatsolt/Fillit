@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 00:59:43 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 01:27:18 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,8 @@ int			dvizh_vlevo(u_int16_t *u, int i, int n);
 u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u);
 void		karta(u_int16_t *u, int l);
 int			min_map_size(int l);
-void		naris(u_int64_t llu);
 void		naris_mass(u_int16_t *summ, t_koor *t, int l);
-u_int64_t	dvig_tetr_vgran(u_int64_t *tetr, int k, u_int64_t tetrik);
 u_int16_t	*summis(t_tetr *tetr, int k);
-u_int64_t	uvel_gran(u_int64_t gran);
-u_int64_t	mod_karta(unsigned short int u, u_int64_t *tetr, int k);
-int			prav_razm(u_int64_t mapa);
-int			check6or8big(u_int64_t u, int l, int n);
-u_int64_t	makegran(u_int64_t gran, int size);
-void		ijsdijs(u_int64_t *tetr, int k, int i);
-void		asdfefe(int *i, int max, int *ki);
-u_int64_t	*makethis(u_int64_t *tetr, int l, int k, u_int64_t tetrik);
-void		narisgrantoo(u_int64_t llu, u_int64_t gran);
-int			checkif8(u_int64_t u, int i, int n);
 u_int16_t	*vstav_v_summ(u_int16_t *summ, u_int16_t u, int i, int j);
 int			norm_li(u_int16_t *summ, u_int16_t u, int i, int j);
 t_tetr		dodvizh(t_tetr *tetr, int k, int i);

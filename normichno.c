@@ -6,45 +6,64 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 00:37:19 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/23 06:50:59 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 01:27:03 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		asdfefe(int *i, int max, int *ki)
+int			norm_li(u_int16_t *summ, u_int16_t u, int i, int j)
 {
-	*i = *i + 8 - max;
-	write(1, "\n", 1);
-	*ki = *ki + 8;
-}
-
-void		ijsdijs(u_int64_t *tetr, int k, int i)
-{
-	while (!((g_imax >> i) & tetr[k]))
-		k++;
-	ft_putchar('A' + k);
-	k = 0;
-}
-
-void		narisgrantoo(u_int64_t llu, u_int64_t gran)
-{
-	int			i;
-	int			k;
-
-	k = 0;
-	i = 0;
-	while (i < 64)
+	if (summ[j] & (u & 0xF000) >> i)
+		return (0);
+	if (4 - i > 0)
 	{
-		if (((g_imax >> i) & gran) && !((g_imax >> i) & llu))
-			write(1, "#", 1);
-		else if (((g_imax >> i) & llu))
-			write(1, "*", 1);
-		else
-			write(1, ".", 1);
-		i++;
-		if ((i + 1) % 8 == 1)
-			write(1, "\n", 1);
+		if (summ[j + 1] & (u & 0x0F00) << (4 - i))
+			return (0);
 	}
-	write(1, "\n", 1);
+	else
+		if (summ[j + 1] & (u & 0x0F00) >> (i - 4))
+			return(0);
+	if (8 - i > 0)
+	{
+		if (summ[j + 2] & (u & 0x00F0) << (8 - i))
+			return (0);
+	}
+	else
+		if (summ[j + 2] & (u & 0x00F0) >> (i - 8))
+			return (0);
+	if (12 - i > 0)
+	{
+		if (summ[j + 3] & (u & 0x000F) << (12 - i))
+			return (0);
+	}
+	else
+		if (summ[j + 3] & (u & 0x000F) >> (i - 12))
+			return (0);
+	return (1);
+}
+
+int			min_map_size(int l)
+{
+	if (l == 1)
+		return (2);
+	if (l == 2)
+		return (3);
+	if (l >= 3 && l <= 4)
+		return (4);
+	if (l >= 5 && l <= 6)
+		return (5);
+	if (l >= 7 && l <= 9)
+		return (6);
+	if (l >= 10 && l <= 12)
+		return (7);
+	if (l >= 13 && l <= 16)
+		return (8);
+	if (l >= 17 && l <= 20)
+		return (9);
+	if (l >= 21 && l <= 24)
+		return (10);
+	if (l >= 25 && l <= 26)
+		return (11);
+	return (15);
 }
