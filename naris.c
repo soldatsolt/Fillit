@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 08:10:00 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 08:17:40 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,24 @@ void		narisABC(u_int16_t *summ, t_koor *t, int l)
 
 	k = 0;
 	if ((32768 >> g_i) & summ[g_j])
+	{
+		while (k < l)
 		{
-			while (k < l)
+			if ((t[k].i1 == g_i && t[k].j1 == g_j) || \
+			(t[k].i2 == g_i && t[k].j2 == g_j) || \
+			(t[k].i3 == g_i && t[k].j3 == g_j) || \
+			(t[k].i4 == g_i && t[k].j4 == g_j))
 			{
-				if ((t[k].i1 == g_i && t[k].j1 == g_j) || \
-				(t[k].i2 == g_i && t[k].j2 == g_j) || \
-				(t[k].i3 == g_i && t[k].j3 == g_j) || \
-				(t[k].i4 == g_i && t[k].j4 == g_j))
-				{
-					ft_putchar('A' + k);
-					break ;
-				}
-				k++;
+				ft_putchar('A' + k);
+				break ;
 			}
-			k = 0;
+			k++;
 		}
-		else
-			write(1, ".", 1);
-		g_i++;
+		k = 0;
+	}
+	else
+		write(1, ".", 1);
+	g_i++;
 }
 
 u_int16_t	*summis(t_tetr *tetr, int16_t k)
