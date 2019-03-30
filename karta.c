@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 04:55:50 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 05:01:41 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,15 @@ t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i)
 {
 	static int lk = 0;
 
-	if (lk > 32768)
+	if (lk > 85672)
 		while (lk)
-			tetr[k].i = i - 1;
+			tetr[k].i = i;
+	lk++;
+	// ft_putnbr(lk);
+	// write(1, "\n", 1);
 	tetr[k].i = i;
 	while (k < l)
 	{
-		lk++;
 		tetr[k] = dodvizh(tetr, k, tetr[k].i);
 		if (tetr[k].j == 51)
 		{
