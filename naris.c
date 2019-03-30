@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 08:17:40 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 08:23:49 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	g_j;
 
 void		naris_mass(u_int16_t *summ, t_koor *t, int l)
 {
-	
 	int k;
 
 	g_j = 0;
@@ -26,14 +25,14 @@ void		naris_mass(u_int16_t *summ, t_koor *t, int l)
 	while (g_j < g_size)
 	{
 		while (g_i < g_size)
-			narisABC(summ, t, l);
+			narisabc(summ, t, l);
 		write(1, "\n", 1);
 		g_j++;
 		g_i = 0;
 	}
 }
 
-void		narisABC(u_int16_t *summ, t_koor *t, int l)
+void		narisabc(u_int16_t *summ, t_koor *t, int l)
 {
 	int k;
 
@@ -91,7 +90,7 @@ int			widt(u_int16_t u)
 	int	wid;
 
 	wid = 0;
-	while (!((((u_int64_t)4369 << (wid))) & (u)))
+	while (!(((u_int16_t)4369 << (wid)) & (u)))
 		wid++;
 	wid = 4 - wid;
 	return (wid);
