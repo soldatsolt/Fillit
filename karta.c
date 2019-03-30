@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 04:07:58 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 04:08:26 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i)
 		if (tetr[k].j == 51)
 		{
 			tetr[k] = g_nach8[k];
-			tetr[k] = dodvizh(tetr, k - 1, (tetr[k - 1].i + 1));
+			tetr = doit(tetr, l, k - 1, (tetr[k - 1].i + 1));
 		}
 		if (tetr[k].j == 52)
 		{
