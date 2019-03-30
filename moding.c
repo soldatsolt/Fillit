@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 03:15:52 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 03:14:52 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 08:40:19 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,36 @@ t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l)
 	return (tetr);
 }
 
+t_koor		mkoor(t_koor t, t_tetr tetr, int f, int i)
+{
+	if (f == 0)
+	{
+		t.i1 = tetr.i + i % 4;
+		t.j1 = tetr.j + i / 4;
+	}
+	if (f == 1)
+	{
+		t.i2 = tetr.i + i % 4;
+		t.j2 = tetr.j + i / 4;
+	}
+	if (f == 2)
+	{
+		t.i3 = tetr.i + i % 4;
+		t.j3 = tetr.j + i / 4;
+	}
+	if (f == 3)
+	{
+		t.i4 = tetr.i + i % 4;
+		t.j4 = tetr.j + i / 4;
+	}
+	return (t);
+}
+
 t_koor		*makekoor(t_koor *t, t_tetr *tetr, int l, int k)
 {
 	int f;
 	int i;
-	
+
 	i = 0;
 	f = 0;
 	while (k < l)
@@ -43,26 +68,7 @@ t_koor		*makekoor(t_koor *t, t_tetr *tetr, int l, int k)
 		{
 			if (((32768 >> i) & tetr[k].u))
 			{
-				if (f == 0)
-				{
-					t[k].i1 = tetr[k].i + i % 4;
-					t[k].j1 = tetr[k].j + i / 4;
-				}
-				if (f == 1)
-				{
-					t[k].i2 = tetr[k].i + i % 4;
-					t[k].j2 = tetr[k].j + i / 4;
-				}
-				if (f == 2)
-				{
-					t[k].i3 = tetr[k].i + i % 4;
-					t[k].j3 = tetr[k].j + i / 4;
-				}
-				if (f == 3)
-				{
-					t[k].i4 = tetr[k].i + i % 4;
-					t[k].j4 = tetr[k].j + i / 4;
-				}
+				t[k] = mkoor(t[k], tetr[k], f, i);
 				f++;
 			}
 			i++;
