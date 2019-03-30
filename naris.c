@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 00:10:02 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 01:32:13 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 03:53:15 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void		naris_mass(u_int16_t *summ, t_koor *t, int l)
 	}
 }
 
-u_int16_t	*summis(t_tetr *tetr, int k)
+u_int16_t	*summis(t_tetr *tetr, int16_t k)
 {
-	int			i;
+	int16_t		i;
 	u_int16_t	*summ;
 
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);

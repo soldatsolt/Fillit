@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 02:03:09 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 03:45:47 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u);
 void		karta(u_int16_t *u, int l);
 int			min_map_size(int l);
 void		naris_mass(u_int16_t *summ, t_koor *t, int l);
-u_int16_t	*summis(t_tetr *tetr, int k);
+u_int16_t	*summis(t_tetr *tetr, int16_t k);
 u_int16_t	*vstav_v_summ(u_int16_t *summ, u_int16_t u, int i, int j);
 int			norm_li(u_int16_t *summ, u_int16_t u, int i, int j);
-t_tetr		dodvizh(t_tetr *tetr, int k, int i);
+t_tetr		dodvizh(t_tetr *tetr, int16_t k, int16_t i);
 int			high(u_int16_t u);
 int			widt(u_int16_t u);
 t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l);
-t_tetr		*doit(t_tetr *tetr, int l, int k, int i);
+t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i);
 t_koor		*makekoor(t_koor *t, t_tetr *tetr, int l, int k);
 
 #endif

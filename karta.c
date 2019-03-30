@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 02:03:58 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 04:07:58 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		karta(u_int16_t *u, int l)
 	t_tetr		*tetr;
 	u_int16_t	*summ;
 	t_koor		*t;
+
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
 	tetr = (t_tetr *)malloc(sizeof(t_tetr) * l);
@@ -33,8 +34,14 @@ void		karta(u_int16_t *u, int l)
 	naris_mass(summ, t, l);
 }
 
-t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
+t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i)
 {
+	// ft_putstr("@@@\n");
+	static int lk = 0;
+
+	ft_putnbr(lk);
+	lk++;
+	write(1, "\n", 1);
 	tetr[k].i = i;
 	while (k < l)
 	{
@@ -42,7 +49,7 @@ t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
 		if (tetr[k].j == 51)
 		{
 			tetr[k] = g_nach8[k];
-			tetr = doit(tetr, l, k - 1, (tetr[k - 1].i + 1));
+			tetr[k] = dodvizh(tetr, k - 1, (tetr[k - 1].i + 1));
 		}
 		if (tetr[k].j == 52)
 		{
@@ -54,12 +61,13 @@ t_tetr		*doit(t_tetr *tetr, int l, int k, int i)
 	return (tetr);
 }
 
-t_tetr		dodvizh(t_tetr *tetr, int k, int i)
+t_tetr		dodvizh(t_tetr *tetr, int16_t k, int16_t i)
 {
-	u_int16_t *summ;
+	u_int16_t 	*summ;
 
 	tetr[k].i = i;
 	summ = summis(tetr, k);
+
 	while (tetr[k].j <= g_size - tetr[k].h)
 	{
 		while (tetr[k].i <= g_size - tetr[k].w)
