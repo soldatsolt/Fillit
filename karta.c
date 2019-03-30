@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 04:08:26 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 04:50:54 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void		karta(u_int16_t *u, int l)
 t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i)
 {
 	// ft_putstr("@@@\n");
-	static int lk = 0;
+	// static int lk = 0;
 
-	ft_putnbr(lk);
-	lk++;
-	write(1, "\n", 1);
+	// ft_putnbr(lk);
+	// lk++;
+	// write(1, "\n", 1);
 	tetr[k].i = i;
 	while (k < l)
 	{
