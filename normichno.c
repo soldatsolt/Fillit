@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 00:37:19 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 01:27:03 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 08:58:16 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,35 @@ int			norm_li(u_int16_t *summ, u_int16_t u, int i, int j)
 			return (0);
 	}
 	else
+	{
 		if (summ[j + 1] & (u & 0x0F00) >> (i - 4))
-			return(0);
+			return (0);
+	}
+	return (normik(summ, u, i, j));
+}
+
+int			normik(u_int16_t *summ, u_int16_t u, int i, int j)
+{
 	if (8 - i > 0)
 	{
 		if (summ[j + 2] & (u & 0x00F0) << (8 - i))
 			return (0);
 	}
 	else
+	{
 		if (summ[j + 2] & (u & 0x00F0) >> (i - 8))
 			return (0);
+	}
 	if (12 - i > 0)
 	{
 		if (summ[j + 3] & (u & 0x000F) << (12 - i))
 			return (0);
 	}
 	else
+	{
 		if (summ[j + 3] & (u & 0x000F) >> (i - 12))
 			return (0);
+	}
 	return (1);
 }
 
