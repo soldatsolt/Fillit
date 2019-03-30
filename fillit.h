@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 08:38:03 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 08:48:09 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ t_tetr			*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i);
 t_koor			*makekoor(t_koor *t, t_tetr *tetr, int l, int k);
 void			narisabc(u_int16_t *summ, t_koor *t, int l);
 t_koor			mkoor(t_koor t, t_tetr tetr, int f, int i);
+t_tetr			retdodvizh(t_tetr tetr, int k);
 
 #endif

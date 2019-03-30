@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 08:24:54 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 08:50:02 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,10 @@ t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i)
 
 t_tetr		dodvizh(t_tetr *tetr, int16_t k, int16_t i)
 {
-	u_int16_t 	*summ;
+	u_int16_t *summ;
 
 	tetr[k].i = i;
 	summ = summis(tetr, k);
-
 	while (tetr[k].j <= g_size - tetr[k].h)
 	{
 		while (tetr[k].i <= g_size - tetr[k].w)
@@ -87,20 +86,21 @@ t_tetr		dodvizh(t_tetr *tetr, int16_t k, int16_t i)
 		tetr[k].j++;
 		tetr[k].i = 0;
 	}
-	if (tetr[k].j != 42 && k == 0)
-	{
-		free(summ);
-		tetr[k].j = 52;
-		return (tetr[k]);
-	}
-	if (tetr[k].j != 42)
-	{
-		free(summ);
-		tetr[k].j = 51;
-		return (tetr[k]);
-	}
 	free(summ);
-	return (tetr[k]);
+	return (retdodvizh(tetr[k], k));
 }
 
-
+t_tetr		retdodvizh(t_tetr tetr, int k)
+{
+	if (tetr.j != 42 && k == 0)
+	{
+		tetr.j = 52;
+		return (tetr);
+	}
+	if (tetr.j != 42)
+	{
+		tetr.j = 51;
+		return (tetr);
+	}
+	return (tetr);
+}
