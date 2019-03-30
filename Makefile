@@ -9,7 +9,7 @@ $(NAME):
 	@gcc $(SRCS) $(FLAGS) -o $(NAME)
 
 g:
-	@gcc -g $(SRCS)
+	@gcc -g $(SRCS) -o $(NAME)
 
 clean:
 	@rm -f $(NAME) 

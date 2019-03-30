@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 06:18:02 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 07:31:22 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			main(int argc, char **argv)
 	if (read(o, NULL, 0) < 0)
 	{
 		write(1, "error\n", 6);
+		close(o);
 		return (0);
 	}
 	u = kolvoresh(o, 0, 0, NULL);
@@ -35,6 +36,7 @@ int			main(int argc, char **argv)
 	}
 	else
 		write(1, "error\n", 6);
+	free(u);
 	return (0);
 }
 
@@ -59,9 +61,12 @@ u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u)
 			i = 0;
 		}
 		karta = ft_strrejoin(karta, str);
+		free(str);
 	}
 	u = tetramina(karta, 0, 0, ft_strlen(karta));
-	ft_strdel(&karta);
+	free(karta);
+	if (i != 4)
+		free(u);
 	return (((i == 4) && u) ? u : NULL);
 }
 
@@ -88,5 +93,7 @@ u_int16_t	*tetramina(char *s, int k, int sym, int l)
 		k++;
 		i = 0;
 	}
+	if (!(tetr_check(u, l, 1) && (g_len < 27)))
+		free(u);
 	return ((tetr_check(u, l, 1) && (g_len < 27)) ? u : NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 05:08:15 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 07:27:54 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,24 @@ void		karta(u_int16_t *u, int l)
 	tetr = doit(tetr, l, 0, 0);
 	t = (t_koor *)malloc(sizeof(t_koor) * l);
 	t = makekoor(t, tetr, l, 0);
-
+	free(summ);
 	summ = summis(tetr, l);
 
 	naris_mass(summ, t, l);
+	free(summ);
+	free(t);
+	free(tetr);
+	free(g_nach8);
 }
 
 t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i)
 {
-	static int lk = 0;
+	// static int lk = 0;
 
-	if (lk > 85672)
-		while (lk)
-			tetr[k].i = i;
-	lk++;
+	// if (lk > 110000)
+	// 	while (lk)
+	// 		tetr[k].i = i;
+	// lk++;
 	// ft_putnbr(lk);
 	// write(1, "\n", 1);
 	tetr[k].i = i;
