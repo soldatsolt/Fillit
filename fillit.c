@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 07:31:22 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 08:01:20 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ u_int16_t	*kolvoresh(int o, int i, int n, u_int16_t *u)
 	}
 	u = tetramina(karta, 0, 0, ft_strlen(karta));
 	free(karta);
-	if (i != 4)
-		free(u);
 	return (((i == 4) && u) ? u : NULL);
 }
 

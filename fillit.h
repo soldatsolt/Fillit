@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 03:45:47 by kmills           ###   ########.fr       */
+/*   Updated: 2019/03/30 08:09:29 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int			widt(u_int16_t u);
 t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l);
 t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i);
 t_koor		*makekoor(t_koor *t, t_tetr *tetr, int l, int k);
+void		narisABC(u_int16_t *summ, t_koor *t, int l);
 
 #endif
