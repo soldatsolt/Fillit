@@ -1,8 +1,0 @@
-{
-    "editor.insertSpaces": false,
-	"editor.detectIndentation": false,
-	"files.associations": {
-		"fillit.h": "c"
-	},
-	"C_Cpp.errorSquiggles": "Disabled"
-}
