@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:30:12 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/03 01:49:47 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/03 02:39:02 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ typedef	struct	s_koor
 
 int				g_len;
 int				g_size;
-t_tetr			*g_nach8;
-u_int64_t		g_imax;
 int				kolvoreshvstroke(char *s);
 u_int16_t		*tetramina(char *s, int k, int sym, int l);
 int				tetr_check(u_int16_t *u, int l, int k);

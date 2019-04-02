@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/03 01:51:53 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/03 02:39:15 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void		karta(u_int16_t *u, int l)
 
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
-	tetr = (t_tetr *)malloc(sizeof(t_tetr) * l);
-	g_nach8 = (t_tetr *)malloc(sizeof(t_tetr) * l);
+	tetr = (t_tetr *)malloc(sizeof(t_tetr) * (l + 1));
 	tetr = maketetrstruct(tetr, u, l);
-	g_nach8 = maketetrstruct(g_nach8, u, l);
 	g_size = min_map_size(l);
 	tetr = doit(tetr, l);
 	t = (t_koor *)malloc(sizeof(t_koor) * l);
@@ -34,7 +32,6 @@ void		karta(u_int16_t *u, int l)
 	free(summ);
 	free(t);
 	free(tetr);
-	free(g_nach8);
 }
 
 int			fit_tetr(t_tetr *tetr, u_int16_t *summ)
@@ -47,7 +44,7 @@ int			fit_tetr(t_tetr *tetr, u_int16_t *summ)
 	return (0);
 }
 
-int			check_sqr(t_tetr *tetr, u_int16_t *summ, int k)
+int			test_tetr(t_tetr *tetr, u_int16_t *summ, int k)
 {
 	u_int16_t	lsumm[16];
 
@@ -61,7 +58,7 @@ int			check_sqr(t_tetr *tetr, u_int16_t *summ, int k)
 		{
 			if (fit_tetr(&tetr[k], summ))
 			{
-				if (check_sqr(tetr, summ, k + 1))
+				if (test_tetr(tetr, summ, k + 1))
 					return (1);
 				else
 					ft_memcpy(summ, lsumm, 32);
@@ -82,7 +79,7 @@ t_tetr		*doit(t_tetr *tetr, int l)
 
 	tetr[l].k = 0;
 	ft_bzero(summ, 32);
-	while (!(check_sqr(tetr, summ, 0)))
+	while (!(test_tetr(tetr, summ, 0)))
 	{
 		ft_bzero(summ, 32);
 		g_size++;

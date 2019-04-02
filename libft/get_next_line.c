@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 15:43:10 by kmills            #+#    #+#             */
-/*   Updated: 2019/02/25 21:45:41 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/03 02:19:59 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int				get_next_line(const int fd, char **line)
 	static t_list	*sl;
 	t_list			*tmp;
 
-	if (!line || fd < 0 || (read(fd, *line, 0) < 0))
+	if (!line || fd < 0 || (read(fd, NULL, 0) < 0))
 		return (-1);
 	if (!(sl))
 		sl = ft_lsttnew((size_t)fd);

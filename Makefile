@@ -4,9 +4,10 @@ override G +=
 FLAGS = -Wall -Wextra -Werror
 SRCS = normichno.c moding.c naris.c fillit.c check.c karta.c ./libft/libft.a
 OBJS = $(SRCS:.c=.o)
+LIBFT = ./libft/libft.a
 all: $(NAME)
 
-$(NAME): lib
+$(NAME): $(LIBFT)
 	@gcc $(SRCS) $(FLAGS) -o $(NAME)
 
 g:
@@ -21,7 +22,7 @@ fclean: clean
 
 re: fclean all
 
-lib:
+$(LIBFT):
 	$(MAKE) -C ./libft all
 
 git:

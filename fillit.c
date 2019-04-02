@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:22 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 08:01:20 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/03 02:35:00 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ u_int16_t	*tetramina(char *s, int k, int sym, int l)
 	u_int16_t	*u;
 
 	g_len = l / 16;
+	if (l == 0)
+		return (NULL);
 	u = (u_int16_t *)malloc(sizeof(*u) * (l / 16));
 	ft_bzero(u, (l / 8));
 	i = 0;
@@ -82,9 +84,7 @@ u_int16_t	*tetramina(char *s, int k, int sym, int l)
 		while (i < 16)
 		{
 			if (s[sym] == '#')
-			{
 				u[k] |= 1 << (16 - i - 1);
-			}
 			i++;
 			sym++;
 		}
