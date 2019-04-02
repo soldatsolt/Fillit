@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/03 01:51:34 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/03 01:51:53 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			check_sqr(t_tetr *tetr, u_int16_t *summ, int k)
 	u_int16_t	lsumm[16];
 
 	ft_bzero(lsumm, 32);
-	if (tetr[k].k == 0) // ХЗ КАК НОРМАЛЬНО, НО МНЕ КАЖЕТСЯ, ЧТО ЭТО НЕВЕРНО
+	if (tetr[k].k == 0)
 		return (1);
 	ft_memcpy(lsumm, summ, 32);
 	while (tetr[k].j <= (g_size - tetr[k].h))
