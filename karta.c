@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/03 00:46:12 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/03 01:51:34 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,17 @@ void		karta(u_int16_t *u, int l)
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
 	tetr = (t_tetr *)malloc(sizeof(t_tetr) * l);
-	tetr[l].k = 0;
 	g_nach8 = (t_tetr *)malloc(sizeof(t_tetr) * l);
 	tetr = maketetrstruct(tetr, u, l);
 	g_nach8 = maketetrstruct(g_nach8, u, l);
 	g_size = min_map_size(l);
-	tetr = doit(tetr);
+	tetr = doit(tetr, l);
 	t = (t_koor *)malloc(sizeof(t_koor) * l);
 	t = makekoor(t, tetr, l, 0);
 	free(summ);
 	summ = summis(tetr, l);
 	naris_mass(summ, t, l);
 	free(summ);
-	// ft_putnbr(g_size); //
 	free(t);
 	free(tetr);
 	free(g_nach8);
@@ -54,7 +52,7 @@ int			check_sqr(t_tetr *tetr, u_int16_t *summ, int k)
 	u_int16_t	lsumm[16];
 
 	ft_bzero(lsumm, 32);
-	if (tetr[k].k == 0)
+	if (tetr[k].k == 0) // ХЗ КАК НОРМАЛЬНО, НО МНЕ КАЖЕТСЯ, ЧТО ЭТО НЕВЕРНО
 		return (1);
 	ft_memcpy(lsumm, summ, 32);
 	while (tetr[k].j <= (g_size - tetr[k].h))
@@ -78,10 +76,11 @@ int			check_sqr(t_tetr *tetr, u_int16_t *summ, int k)
 	return (0);
 }
 
-t_tetr		*doit(t_tetr *tetr)
+t_tetr		*doit(t_tetr *tetr, int l)
 {
 	u_int16_t		summ[16];
 
+	tetr[l].k = 0;
 	ft_bzero(summ, 32);
 	while (!(check_sqr(tetr, summ, 0)))
 	{
