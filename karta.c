@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 09:01:35 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/02 23:09:29 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		karta(u_int16_t *u, int l)
 	tetr = maketetrstruct(tetr, u, l);
 	g_nach8 = maketetrstruct(g_nach8, u, l);
 	g_size = min_map_size(l);
-	tetr = doit(tetr, l, 0, 0);
+	tetr = doit(tetr);
 	t = (t_koor *)malloc(sizeof(t_koor) * l);
 	t = makekoor(t, tetr, l, 0);
 	free(summ);
@@ -37,70 +37,54 @@ void		karta(u_int16_t *u, int l)
 	free(g_nach8);
 }
 
-t_tetr		*doit(t_tetr *tetr, int16_t l, int16_t k, int16_t i)
+int		fit_tetr(t_tetr *tetr, unsigned short int *map)
 {
-	static int lk = 0;
-
-	if (lk > 90000)
-		while (lk)
-			tetr[k].i = i;
-	lk++;
-	tetr[k].i = i;
-	while (k < l)
+	if (norm_li(map, tetr->u, tetr->i, tetr->j))
 	{
-		tetr[k] = dodvizh(tetr, k, tetr[k].i);
-		if (tetr[k].j == 51)
-		{
-			tetr[k] = g_nach8[k];
-			tetr = doit(tetr, l, k - 1, (tetr[k - 1].i + 1));
-		}
-		if (tetr[k].j == 52)
-		{
-			g_size++;
-			tetr = doit(g_nach8, l, 0, 0);
-		}
-		k++;
+		map = vstav_v_summ(map, tetr->u, tetr->i, tetr->j);
+		return (1);
 	}
-	return (tetr);
+	return (0);
 }
 
-t_tetr		dodvizh(t_tetr *tetr, int16_t k, int16_t i)
+int		check_sqr(t_tetr *tetr, unsigned short int *summ, int k)
 {
-	u_int16_t *summ;
+	unsigned short int	lsumm[16];
 
-	tetr[k].i = i;
-	summ = summis(tetr, k);
-	while (tetr[k].j <= g_size - tetr[k].h)
+	ft_bzero(lsumm, 32);
+	if (tetr[k].k == 0)
+		return (1);
+	ft_memcpy(lsumm, summ, 32);
+	while (tetr[k].j <= (g_size - tetr[k].h))
 	{
-		while (tetr[k].i <= g_size - tetr[k].w)
+		while (tetr[k].i <= (g_size - tetr[k].w))
 		{
-			if (norm_li(summ, tetr[k].u, tetr[k].i, tetr[k].j))
+			if (fit_tetr(&tetr[k], summ))
 			{
-				free(summ);
-				return (tetr[k]);
-				tetr[k].j = 41;
-				break ;
+				if (check_sqr(tetr, summ, k + 1))
+					return (1);
+				else
+					ft_memcpy(summ, lsumm, 32);
 			}
 			tetr[k].i++;
 		}
-		tetr[k].j++;
 		tetr[k].i = 0;
+		tetr[k].j++;
 	}
-	free(summ);
-	return (retdodvizh(tetr[k], k));
+	tetr[k].i = 0;
+	tetr[k].j = 0;
+	return (0);
 }
 
-t_tetr		retdodvizh(t_tetr tetr, int k)
+t_tetr		*doit(t_tetr *tetr)
 {
-	if (tetr.j != 42 && k == 0)
+	unsigned short int		summ[16];
+
+	ft_bzero(summ, 32);
+	while (!(check_sqr(tetr, summ, 0)))
 	{
-		tetr.j = 52;
-		return (tetr);
-	}
-	if (tetr.j != 42)
-	{
-		tetr.j = 51;
-		return (tetr);
+		ft_bzero(summ, 32);
+		g_size++;
 	}
 	return (tetr);
 }

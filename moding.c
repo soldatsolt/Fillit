@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 03:15:52 by kmills            #+#    #+#             */
-/*   Updated: 2019/03/30 08:40:19 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/02 22:38:41 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_tetr		*maketetrstruct(t_tetr *tetr, u_int16_t *u, int l)
 		tetr[k].u = u[k];
 		tetr[k].i = 0;
 		tetr[k].j = 0;
-		tetr[k].k = k;
+		tetr[k].k = k + 1;
 		tetr[k].w = widt(u[k]);
 		tetr[k].h = high(u[k]);
 		k++;
