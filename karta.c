@@ -6,7 +6,7 @@
 /*   By: kmills <kmills@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 21:16:24 by kmills            #+#    #+#             */
-/*   Updated: 2019/04/02 23:09:29 by kmills           ###   ########.fr       */
+/*   Updated: 2019/04/03 00:46:12 by kmills           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		karta(u_int16_t *u, int l)
 	summ = (u_int16_t *)malloc(sizeof(u_int16_t) * 16);
 	ft_bzero(summ, 32);
 	tetr = (t_tetr *)malloc(sizeof(t_tetr) * l);
+	tetr[l].k = 0;
 	g_nach8 = (t_tetr *)malloc(sizeof(t_tetr) * l);
 	tetr = maketetrstruct(tetr, u, l);
 	g_nach8 = maketetrstruct(g_nach8, u, l);
@@ -32,24 +33,25 @@ void		karta(u_int16_t *u, int l)
 	summ = summis(tetr, l);
 	naris_mass(summ, t, l);
 	free(summ);
+	// ft_putnbr(g_size); //
 	free(t);
 	free(tetr);
 	free(g_nach8);
 }
 
-int		fit_tetr(t_tetr *tetr, unsigned short int *map)
+int			fit_tetr(t_tetr *tetr, u_int16_t *summ)
 {
-	if (norm_li(map, tetr->u, tetr->i, tetr->j))
+	if (norm_li(summ, tetr->u, tetr->i, tetr->j))
 	{
-		map = vstav_v_summ(map, tetr->u, tetr->i, tetr->j);
+		summ = vstav_v_summ(summ, tetr->u, tetr->i, tetr->j);
 		return (1);
 	}
 	return (0);
 }
 
-int		check_sqr(t_tetr *tetr, unsigned short int *summ, int k)
+int			check_sqr(t_tetr *tetr, u_int16_t *summ, int k)
 {
-	unsigned short int	lsumm[16];
+	u_int16_t	lsumm[16];
 
 	ft_bzero(lsumm, 32);
 	if (tetr[k].k == 0)
@@ -78,7 +80,7 @@ int		check_sqr(t_tetr *tetr, unsigned short int *summ, int k)
 
 t_tetr		*doit(t_tetr *tetr)
 {
-	unsigned short int		summ[16];
+	u_int16_t		summ[16];
 
 	ft_bzero(summ, 32);
 	while (!(check_sqr(tetr, summ, 0)))
